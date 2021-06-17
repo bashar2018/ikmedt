@@ -3,12 +3,77 @@
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
   </head>
   <body>
-    <a-scene>
-      <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
-      <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-      <a-sky color="#ECECEC"></a-sky>
+    <a-scene background="color: darkblue">
+      <a-assets>
+        <img id="deeg" src="https://cdn.glitch.com/4ad92b88-abdc-40ec-bc86-a7c26956db38%2Fdownload%20(2).jpg?1623923408365">
+        <img id="saus" src="https://cdn.glitch.com/4ad92b88-abdc-40ec-bc86-a7c26956db38%2Fthumbnails%2Fdownload%20(5).jpg?1623923959220">
+        <img id="pizza" src="https://cdn.glitch.com/4ad92b88-abdc-40ec-bc86-a7c26956db38%2Fdownload%20(4).jpg?1623923522668">
+      </a-assets>
+      <a-box
+      id="sauceChoiceMeter"
+      position="-5.1 2.6 -4"
+      depth="0.2"
+      height="0.2"
+      width="0.2"
+      color="lightgreen"
+      ></a-box>
+      <a-box
+      id="deegChoiceMeter"
+      position="-1.6 2.6 -4"
+      depth="0.2"
+      height="0.2"
+      width="0.2"
+      color="lightgreen"
+      ></a-box>
+      <a-box
+      id="pizzaChoiceMeter"
+      position="1.9 2.6 -4"
+      depth="0.2"
+      height="0.2"
+      width="0.2"
+      color="lightgreen"
+      ></a-box>
+      <a-box
+        position="0 4 -4.1"
+        rotation=" 0 0 0"
+        depth="0.2"
+        width="12"
+        height="6"
+        color="#000000"
+        shadow
+      ></a-box>
+      <a-box
+        position="-3.5 4 -4"
+        depth="0.2"
+        height="3"
+        width="3"
+        src="#saus"
+        shadow
+      ></a-box>
+      <a-box
+        position="0 4 -4"
+        depth="0.2"
+        height="3"
+        width="3"
+        src="#deeg"
+        shadow
+      ></a-box>
+      <a-box
+        position="3.5 4 -4"
+        depth="0.2"
+        height="3"
+        width="3"
+        src="#pizza"
+        shadow
+      ></a-box>
+      <a-plane
+        position="0 0 0"
+        rotation="-90 0 0"
+        width="20"
+        height="20"
+        color="#7BC8A4"
+        shadow
+      ></a-plane>
     </a-scene>
   </body>
 </html>
