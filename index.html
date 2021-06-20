@@ -1,14 +1,165 @@
 <html>
   <head>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
+    <script>
+  AFRAME.registerComponent('change', {
+    schema: {
+    },
+
+    init: function () {
+      var currentEvent = "animation-start";
+      var data = this.data;
+      var thisElId = this.el.getAttribute('id');
+      var elId = "";
+      switch (thisElId) {
+        case "sauceBox":
+          elId = "sauceChoiceMeter";
+          console.log("iets");
+         break;
+
+        case "pizzaBox":
+          elId = "pizzaChoiceMeter";
+          break;
+
+        case "doughBox":
+          elId = "doughChoiceMeter";
+          break;
+      }
+      var el = this.el; // <a-box>
+        console.log(el);
+      el.addEventListener('mouseenter', function () {
+        document.getElementById(elId).emit(currentEvent);
+        switch (currentEvent) {
+          case "animation-start":
+          case "animation-restart":
+          case "animation-resume":
+            currentEvent = "animation-pause";
+          break;
+          case "animation-pause":
+            currentEvent = "animation-resume";
+          break;
+    }
+      });
+
+      el.addEventListener('mouseleave', function () {
+        document.getElementById(elId).emit("animation-pause");
+        document.getElementById(elId).setAttribute("height", "0.2");
+        currentEvent = "animation-start";
+      });
+    }
+  });
+</script>
   </head>
   <body>
-    <a-scene>
-      <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
-      <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
-      <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-      <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-      <a-sky color="#ECECEC"></a-sky>
+    <a-scene background="color: darkblue">
+      <a-assets>
+        <img id="deeg" src="https://cdn.glitch.com/4ad92b88-abdc-40ec-bc86-a7c26956db38%2Fdownload%20(2).jpg?1623923408365">
+        <img id="saus" src="https://cdn.glitch.com/4ad92b88-abdc-40ec-bc86-a7c26956db38%2Fthumbnails%2Fdownload%20(5).jpg?1623923959220">
+        <img id="pizza" src="https://cdn.glitch.com/4ad92b88-abdc-40ec-bc86-a7c26956db38%2Fdownload%20(4).jpg?1623923522668">
+      </a-assets>
+      <a-camera>
+        <a-cursor color="white"></a-cursor>
+      </a-camera>
+      <a-box
+      id="sauceChoiceMeter"
+      position="-5.2 4 -4"
+      depth="0.2"
+      height="0.2"
+      width="0.4"
+      color="lightgreen"
+      animation="property: height;
+                  to: 3;
+                  easing: linear;
+                  dur: 3000;
+                  loop: false;
+                  startEvents: animation-start;
+                  pauseEvents: animation-pause;
+                  resumeEvents: animation-resume;
+                  restartEvents: animation-restart"
+      ></a-box>
+      <a-box
+      id="doughChoiceMeter"
+      position="-1.7 4 -4"
+      depth="0.2"
+      height="0.2"
+      width="0.4"
+      color="lightgreen"
+      animation="property: height;
+                to: 3;
+                easing: linear;
+                dur: 3000;
+                loop: false;
+                startEvents: animation-start;
+                pauseEvents: animation-pause;
+                resumeEvents: animation-resume;
+                restartEvents: animation-restart"
+      ></a-box>
+      <a-box
+      id="pizzaChoiceMeter"
+      position="1.8 4 -4"
+      depth="0.2"
+      height="0.2"
+      width="0.4"
+      color="lightgreen"
+      animation="property: height;
+                to: 3;
+                easing: linear;
+                dur: 3000;
+                loop: false;
+                startEvents: animation-start;
+                pauseEvents: animation-pause;
+                resumeEvents: animation-resume;
+                restartEvents: animation-restart"
+      ></a-box>
+      <a-box
+        id="backgroundBox"
+        position="0 4 -4.1"
+        rotation=" 0 0 0"
+        depth="0.2"
+        width="12"
+        height="6"
+        color="#000000"
+        shadow
+      ></a-box>
+      <a-box
+        id="sauceBox"
+        change
+        position="-3.5 4 -4"
+        depth="0.2"
+        height="3"
+        width="3"
+        src="#saus"
+        shadow
+      ></a-box>
+      <a-box
+        id="doughBox"
+        change
+        position="0 4 -4"
+        depth="0.2"
+        height="3"
+        width="3"
+        src="#deeg"
+        shadow
+      ></a-box>
+      <a-box
+        id="pizzaBox"
+        change
+        position="3.5 4 -4"
+        depth="0.2"
+        height="3"
+        width="3"
+        src="#pizza"
+        shadow
+      ></a-box>
+      <a-plane
+        position="0 0 0"
+        rotation="-90 0 0"
+        width="20"
+        height="20"
+        color="#7BC8A4"
+        shadow
+      ></a-plane>
     </a-scene>
   </body>
 </html>
