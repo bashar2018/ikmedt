@@ -35,18 +35,28 @@
           case "animation-restart":
           case "animation-resume":
             currentEvent = "animation-pause";
+            document.getElementById(elId).addEventListener('animationend', () => {
+            console.log('Animation ended');
+          });
+            console.log(document.getElementById(elId).getAttribute(''))
+
           break;
           case "animation-pause":
             currentEvent = "animation-resume";
+            console.log("test:2 ")
           break;
     }
-      });
+      }
+
+    );
 
       el.addEventListener('mouseleave', function () {
         document.getElementById(elId).emit("animation-pause");
         document.getElementById(elId).setAttribute("height", "0.2");
         currentEvent = "animation-start";
+
       });
+
     }
   });
 </script>
