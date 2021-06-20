@@ -13,7 +13,13 @@
       var thisElId = this.el.getAttribute('id');
       var elId = "";
       switch (thisElId) {
+        case "hawaiBox":
+        case "salamiBox":
+        case "hamBox":
         case "sauceBox":
+        case "salamiChoiceMeter":
+        case "hamChoiceMeter":
+        case "hawaiiChoiceMeter":
           elId = "sauceChoiceMeter";
           console.log("iets");
          break;
@@ -25,9 +31,18 @@
         case "doughBox":
           elId = "doughChoiceMeter";
           break;
+        default:
+        elId = "sauceChoiceMeter";
       }
       var el = this.el; // <a-box>
         console.log(el);
+        document.getElementById(elId).addEventListener('animationcomplete', function(){
+          console.log("height is 3" + elId);
+          console.log(document.getElementById('tutorialChoice').getAttribute('visible'));
+          document.getElementById('tutorialChoice').setAttribute('visible', 'false');
+          document.getElementById('pizzaChoice').setAttribute('visible', 'true');
+          console.log(document.getElementById('tutorialChoice').getAttribute('visible'));
+        });
       el.addEventListener('mouseenter', function () {
         document.getElementById(elId).emit(currentEvent);
         switch (currentEvent) {
@@ -39,6 +54,7 @@
           case "animation-pause":
             currentEvent = "animation-resume";
           break;
+
     }
       });
 
@@ -61,6 +77,7 @@
       <a-camera>
         <a-cursor color="white"></a-cursor>
       </a-camera>
+      <a-entity id="tutorialChoice">
       <a-box
       id="sauceChoiceMeter"
       position="-5.2 4 -4"
@@ -160,6 +177,108 @@
         color="#7BC8A4"
         shadow
       ></a-plane>
+    </a-entity>
+    <a-entity id="pizzaChoice" visible="false">
+    <a-box
+    id="salamiChoiceMeter"
+    position="-5.2 4 -4"
+    depth="0.2"
+    height="0.2"
+    width="0.4"
+    color="lightgreen"
+    animation="property: height;
+                to: 3;
+                easing: linear;
+                dur: 3000;
+                loop: false;
+                startEvents: animation-start;
+                pauseEvents: animation-pause;
+                resumeEvents: animation-resume;
+                restartEvents: animation-restart"
+    ></a-box>
+    <a-box
+    id="hamChoiceMeter"
+    position="-1.7 4 -4"
+    depth="0.2"
+    height="0.2"
+    width="0.4"
+    color="lightgreen"
+    animation="property: height;
+              to: 3;
+              easing: linear;
+              dur: 3000;
+              loop: false;
+              startEvents: animation-start;
+              pauseEvents: animation-pause;
+              resumeEvents: animation-resume;
+              restartEvents: animation-restart"
+    ></a-box>
+    <a-box
+    id="hawaiiChoiceMeter"
+    position="1.8 4 -4"
+    depth="0.2"
+    height="0.2"
+    width="0.4"
+    color="lightgreen"
+    animation="property: height;
+              to: 3;
+              easing: linear;
+              dur: 3000;
+              loop: false;
+              startEvents: animation-start;
+              pauseEvents: animation-pause;
+              resumeEvents: animation-resume;
+              restartEvents: animation-restart"
+    ></a-box>
+    <a-box
+      id="backgroundBox"
+      position="0 4 -4.1"
+      rotation=" 0 0 0"
+      depth="0.2"
+      width="12"
+      height="6"
+      color="#000000"
+      shadow
+    ></a-box>
+    <a-box
+      id="salamiBox"
+      change
+      position="-3.5 4 -4"
+      depth="0.2"
+      height="3"
+      width="3"
+      src="#deeg"
+      shadow
+    ></a-box>
+    <a-box
+      id="hamBox"
+      change
+      position="0 4 -4"
+      depth="0.2"
+      height="3"
+      width="3"
+      src="#saus"
+      shadow
+    ></a-box>
+    <a-box
+      id="hawaiiBox"
+      change
+      position="3.5 4 -4"
+      depth="0.2"
+      height="3"
+      width="3"
+      src="#pizza"
+      shadow
+    ></a-box>
+    <a-plane
+      position="0 0 0"
+      rotation="-90 0 0"
+      width="20"
+      height="20"
+      color="#7BC8A4"
+      shadow
+    ></a-plane>
+  </a-entity>
     </a-scene>
   </body>
 </html>
