@@ -13,35 +13,47 @@
       var thisElId = this.el.getAttribute('id');
       var elId = "";
       switch (thisElId) {
-        case "hawaiBox":
+        case "hawaiiBox":
+          elId = "hawaiiChoiceMeter"
+          break;
         case "salamiBox":
+          elId = "salamiChoiceMeter"
+          break;
         case "hamBox":
+          elId = "hamChoiceMeter"
+          break;
         case "sauceBox":
-        case "salamiChoiceMeter":
-        case "hamChoiceMeter":
-        case "hawaiiChoiceMeter":
           elId = "sauceChoiceMeter";
-          console.log("iets");
          break;
-
         case "pizzaBox":
           elId = "pizzaChoiceMeter";
           break;
-
         case "doughBox":
           elId = "doughChoiceMeter";
           break;
         default:
         elId = "sauceChoiceMeter";
       }
+      console.log(elId)
       var el = this.el; // <a-box>
-        console.log(el);
         document.getElementById(elId).addEventListener('animationcomplete', function(){
-          console.log("height is 3" + elId);
-          console.log(document.getElementById('tutorialChoice').getAttribute('visible'));
-          document.getElementById('tutorialChoice').setAttribute('visible', 'false');
-          document.getElementById('pizzaChoice').setAttribute('visible', 'true');
-          console.log(document.getElementById('tutorialChoice').getAttribute('visible'));
+          console.log(elId);
+          switch (elId){
+            case "hawaiiChoiceMeter":
+            case "hamChoiceMeter":
+            case "salamiChoiceMeter":
+            document.getElementById('pizzaChoice').setAttribute('visible', 'false');
+            document.getElementById('pizzaChoice').setAttribute('position', '-5 -10 -10');
+            break;
+
+            case "doughChoiceMeter":
+            case "sauceChoiceMeter":
+            case "pizzaChoiceMeter":
+              document.getElementById('tutorialChoice').setAttribute('visible', 'false');
+              document.getElementById('tutorialChoice').setAttribute('position', '-5 -10 -10');
+              document.getElementById('pizzaChoice').setAttribute('visible', 'true');
+              break;
+          }
         });
       el.addEventListener('mouseenter', function () {
         document.getElementById(elId).emit(currentEvent);
@@ -54,14 +66,15 @@
           case "animation-pause":
             currentEvent = "animation-resume";
           break;
-
-    }
+        }
+        console.log("test");
       });
 
       el.addEventListener('mouseleave', function () {
         document.getElementById(elId).emit("animation-pause");
         document.getElementById(elId).setAttribute("height", "0.2");
         currentEvent = "animation-start";
+        console.log("test2");
       });
     }
   });
@@ -73,6 +86,9 @@
         <img id="deeg" src="https://cdn.glitch.com/4ad92b88-abdc-40ec-bc86-a7c26956db38%2Fdownload%20(2).jpg?1623923408365">
         <img id="saus" src="https://cdn.glitch.com/4ad92b88-abdc-40ec-bc86-a7c26956db38%2Fthumbnails%2Fdownload%20(5).jpg?1623923959220">
         <img id="pizza" src="https://cdn.glitch.com/4ad92b88-abdc-40ec-bc86-a7c26956db38%2Fdownload%20(4).jpg?1623923522668">
+        <img id="hawaiiPizza" src="https://cdn.glitch.com/cdddc178-3bc7-4793-beb0-f147ddbf5afd%2FhawaiiPizza.jpeg?1624268226949">
+        <img id="hamPizza" src="https://cdn.glitch.com/cdddc178-3bc7-4793-beb0-f147ddbf5afd%2FhamPizza.jpeg?1624268298540">
+        <img id="salamiPizza" src="https://cdn.glitch.com/cdddc178-3bc7-4793-beb0-f147ddbf5afd%2Fthumbnails%2FsalamiPizza.jpeg?1624268276899">
       </a-assets>
       <a-camera>
         <a-cursor color="white"></a-cursor>
@@ -247,7 +263,7 @@
       depth="0.2"
       height="3"
       width="3"
-      src="#deeg"
+      src="#salamiPizza"
       shadow
     ></a-box>
     <a-box
@@ -257,7 +273,7 @@
       depth="0.2"
       height="3"
       width="3"
-      src="#saus"
+      src="#hamPizza"
       shadow
     ></a-box>
     <a-box
@@ -267,7 +283,7 @@
       depth="0.2"
       height="3"
       width="3"
-      src="#pizza"
+      src="#hawaiiPizza"
       shadow
     ></a-box>
     <a-plane
