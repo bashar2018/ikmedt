@@ -93,7 +93,7 @@
       <a-camera>
         <a-cursor color="white"></a-cursor>
       </a-camera>
-      <a-entity id="tutorialChoice">
+      <a-entity id="tutorialChoice" visible="false">
       <a-box
       id="sauceChoiceMeter"
       position="-5.2 4 -4"
@@ -294,6 +294,177 @@
       color="#7BC8A4"
       shadow
     ></a-plane>
+  </a-entity>
+  <a-entity id="kitchen" visible="true">
+    <a-plane
+      position="0 0 -10"
+      rotation="-90 0 0"
+      width="20"
+      height="20"
+      color="#72C4F4"
+      shadow
+    ></a-plane>
+    <a-box
+      id="backWall"
+      position="0 5 -20"
+      rotation="0 0 0"
+      width="20"
+      height="10"
+      depth="0.2"
+      color="#FFFFFF"
+      shadow
+    ></a-box>
+    <a-entity id="stellage">
+
+      <a-box
+        id="middleShelf"
+        position="0 5 -19.5"
+        width="10"
+        height= "0.1"
+        color ="brown"
+
+      >
+
+      </a-box>
+
+       <a-box
+          id="doughObj"
+          position="0 5.3 -19.5"
+          width="0.5"
+          height ="0.5"
+          color="black"
+          >
+
+        </a-box>
+       <a-box
+          id="sauceObj"
+          position="2 7.3 -19.5"
+          width="0.5"
+          height ="0.5"
+          color="green"
+          >
+        </a-box>
+      <a-box
+          id="kaasObj"
+          position="0.5 7.3 -19.5"
+          width="0.5"
+          height ="0.5"
+          color="red"
+          >
+        </a-box>
+      <a-box
+          id="salamiObj"
+          position="1 3.3 -19.5"
+          width="0.5"
+          height ="0.5"
+          color="blue"
+          >
+        </a-box>
+      <a-box
+        id="topShelf"
+        position="0 7 -19.5"
+        width="10"
+        height= "0.1"
+        color ="brown"
+      >
+      </a-box>
+      <a-box
+        id="bottomShelf"
+        position="0 3 -19.5"
+        width="10"
+        height= "0.1"
+        color ="brown"
+      >
+      </a-box>
+    </a-entity>
+
+    <a-box
+      id="leftWall"
+      position="-10 5 -10"
+      rotation="0 90 0"
+      width="20"
+      height="10"
+      depth="0.2"
+      color="#FFFFFF"
+      shadow
+    ></a-box>
+    <a-entity
+      id="toDoListSalami">
+      <a-box
+      id="toDoList"
+      position="-10 5 -10"
+      rotation="0 90 0"
+      width="10"
+      height="5"
+      depth="0.3"
+      color="#AAAAAA"
+      shadow
+    ></a-box>
+      <a-text
+      id="stapBijhouder"
+      position="-9.7 7 -13"
+      rotation="0 90 0"
+      color="white"
+      value="Stap 1/3"
+      height="2"
+      ></a-text>
+      <a-text
+      id="toDoListSalamiText"
+      position="-9.7 6 -5.5"
+      rotation="0 90 0"
+      color="white"
+      value="To do list:
+
+            -      Deeg
+
+            -      Saus
+
+            -      Salami
+
+            -      Kaas"></a-text>
+    <a-box
+      id="checkBoxSalami"
+      position="-9.7 5.55 -5.5"
+      color="red"
+      width="0.2"
+      height="0.2"
+      depth="0.2"
+    ></a-box>
+    <a-box
+      id="checkBoxKaas"
+      position="-9.7 5.1 -5.5"
+      color="red"
+      width="0.2"
+      height="0.2"
+      depth="0.2"
+    ></a-box>
+        <a-box
+      id="checkBoxDeeg"
+      position="-9.7 6.4 -5.5"
+      color="red"
+      width="0.2"
+      height="0.2"
+      depth="0.2"
+    ></a-box>
+    <a-box
+      id="checkBoxSaus"
+      position="-9.7 6 -5.5"
+      color="red"
+      width="0.2"
+      height="0.2"
+      depth="0.2"
+    ></a-box>
+    </a-entity>
+    <a-box
+      id="rightWall"
+      position="10 5 -10"
+      rotation="0 90 0"
+      width="20"
+      height="10"
+      depth="0.2"
+      color="#FFFFFF"
+      shadow
+    ></a-box>
   </a-entity>
     </a-scene>
   </body>
