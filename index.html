@@ -1,8 +1,18 @@
-@@ -13,35 +13,47 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
+    <script>
+  AFRAME.registerComponent('change', {
+    schema: {
+    },
+
+    init: function () {
+      var currentEvent = "animation-start";
+      var data = this.data;
       var thisElId = this.el.getAttribute('id');
       var elId = "";
       switch (thisElId) {
-        case "hawaiBox":
         case "hawaiiBox":
           elId = "hawaiiChoiceMeter"
           break;
@@ -13,17 +23,11 @@
           elId = "hamChoiceMeter"
           break;
         case "sauceBox":
-        case "salamiChoiceMeter":
-        case "hamChoiceMeter":
-        case "hawaiiChoiceMeter":
           elId = "sauceChoiceMeter";
-          console.log("iets");
          break;
-
         case "pizzaBox":
           elId = "pizzaChoiceMeter";
           break;
-
         case "doughBox":
           elId = "doughChoiceMeter";
           break;
@@ -32,13 +36,7 @@
       }
       console.log(elId)
       var el = this.el; // <a-box>
-        console.log(el);
         document.getElementById(elId).addEventListener('animationcomplete', function(){
-          console.log("height is 3" + elId);
-          console.log(document.getElementById('tutorialChoice').getAttribute('visible'));
-          document.getElementById('tutorialChoice').setAttribute('visible', 'false');
-          document.getElementById('pizzaChoice').setAttribute('visible', 'true');
-          console.log(document.getElementById('tutorialChoice').getAttribute('visible'));
           console.log(elId);
           switch (elId){
             case "hawaiiChoiceMeter":
@@ -59,12 +57,15 @@
         });
       el.addEventListener('mouseenter', function () {
         document.getElementById(elId).emit(currentEvent);
-@@ -54,14 +66,15 @@
+        switch (currentEvent) {
+          case "animation-start":
+          case "animation-restart":
+          case "animation-resume":
+            currentEvent = "animation-pause";
+          break;
           case "animation-pause":
             currentEvent = "animation-resume";
           break;
-
-    }
         }
         console.log("test");
       });
@@ -77,7 +78,11 @@
       });
     }
   });
-@@ -73,6 +86,9 @@
+</script>
+  </head>
+  <body>
+    <a-scene background="color: darkblue">
+      <a-assets>
         <img id="deeg" src="https://cdn.glitch.com/4ad92b88-abdc-40ec-bc86-a7c26956db38%2Fdownload%20(2).jpg?1623923408365">
         <img id="saus" src="https://cdn.glitch.com/4ad92b88-abdc-40ec-bc86-a7c26956db38%2Fthumbnails%2Fdownload%20(5).jpg?1623923959220">
         <img id="pizza" src="https://cdn.glitch.com/4ad92b88-abdc-40ec-bc86-a7c26956db38%2Fdownload%20(4).jpg?1623923522668">
@@ -87,30 +92,209 @@
       </a-assets>
       <a-camera>
         <a-cursor color="white"></a-cursor>
-@@ -247,7 +263,7 @@
+      </a-camera>
+      <a-entity id="tutorialChoice">
+      <a-box
+      id="sauceChoiceMeter"
+      position="-5.2 4 -4"
+      depth="0.2"
+      height="0.2"
+      width="0.4"
+      color="lightgreen"
+      animation="property: height;
+                  to: 3;
+                  easing: linear;
+                  dur: 3000;
+                  loop: false;
+                  startEvents: animation-start;
+                  pauseEvents: animation-pause;
+                  resumeEvents: animation-resume;
+                  restartEvents: animation-restart"
+      ></a-box>
+      <a-box
+      id="doughChoiceMeter"
+      position="-1.7 4 -4"
+      depth="0.2"
+      height="0.2"
+      width="0.4"
+      color="lightgreen"
+      animation="property: height;
+                to: 3;
+                easing: linear;
+                dur: 3000;
+                loop: false;
+                startEvents: animation-start;
+                pauseEvents: animation-pause;
+                resumeEvents: animation-resume;
+                restartEvents: animation-restart"
+      ></a-box>
+      <a-box
+      id="pizzaChoiceMeter"
+      position="1.8 4 -4"
+      depth="0.2"
+      height="0.2"
+      width="0.4"
+      color="lightgreen"
+      animation="property: height;
+                to: 3;
+                easing: linear;
+                dur: 3000;
+                loop: false;
+                startEvents: animation-start;
+                pauseEvents: animation-pause;
+                resumeEvents: animation-resume;
+                restartEvents: animation-restart"
+      ></a-box>
+      <a-box
+        id="backgroundBox"
+        position="0 4 -4.1"
+        rotation=" 0 0 0"
+        depth="0.2"
+        width="12"
+        height="6"
+        color="#000000"
+        shadow
+      ></a-box>
+      <a-box
+        id="sauceBox"
+        change
+        position="-3.5 4 -4"
+        depth="0.2"
+        height="3"
+        width="3"
+        src="#saus"
+        shadow
+      ></a-box>
+      <a-box
+        id="doughBox"
+        change
+        position="0 4 -4"
+        depth="0.2"
+        height="3"
+        width="3"
+        src="#deeg"
+        shadow
+      ></a-box>
+      <a-box
+        id="pizzaBox"
+        change
+        position="3.5 4 -4"
+        depth="0.2"
+        height="3"
+        width="3"
+        src="#pizza"
+        shadow
+      ></a-box>
+      <a-plane
+        position="0 0 0"
+        rotation="-90 0 0"
+        width="20"
+        height="20"
+        color="#7BC8A4"
+        shadow
+      ></a-plane>
+    </a-entity>
+    <a-entity id="pizzaChoice" visible="false">
+    <a-box
+    id="salamiChoiceMeter"
+    position="-5.2 4 -4"
+    depth="0.2"
+    height="0.2"
+    width="0.4"
+    color="lightgreen"
+    animation="property: height;
+                to: 3;
+                easing: linear;
+                dur: 3000;
+                loop: false;
+                startEvents: animation-start;
+                pauseEvents: animation-pause;
+                resumeEvents: animation-resume;
+                restartEvents: animation-restart"
+    ></a-box>
+    <a-box
+    id="hamChoiceMeter"
+    position="-1.7 4 -4"
+    depth="0.2"
+    height="0.2"
+    width="0.4"
+    color="lightgreen"
+    animation="property: height;
+              to: 3;
+              easing: linear;
+              dur: 3000;
+              loop: false;
+              startEvents: animation-start;
+              pauseEvents: animation-pause;
+              resumeEvents: animation-resume;
+              restartEvents: animation-restart"
+    ></a-box>
+    <a-box
+    id="hawaiiChoiceMeter"
+    position="1.8 4 -4"
+    depth="0.2"
+    height="0.2"
+    width="0.4"
+    color="lightgreen"
+    animation="property: height;
+              to: 3;
+              easing: linear;
+              dur: 3000;
+              loop: false;
+              startEvents: animation-start;
+              pauseEvents: animation-pause;
+              resumeEvents: animation-resume;
+              restartEvents: animation-restart"
+    ></a-box>
+    <a-box
+      id="backgroundBox"
+      position="0 4 -4.1"
+      rotation=" 0 0 0"
+      depth="0.2"
+      width="12"
+      height="6"
+      color="#000000"
+      shadow
+    ></a-box>
+    <a-box
+      id="salamiBox"
+      change
+      position="-3.5 4 -4"
       depth="0.2"
       height="3"
       width="3"
-      src="#deeg"
       src="#salamiPizza"
       shadow
     ></a-box>
     <a-box
-@@ -257,7 +273,7 @@
+      id="hamBox"
+      change
+      position="0 4 -4"
       depth="0.2"
       height="3"
       width="3"
-      src="#saus"
       src="#hamPizza"
       shadow
     ></a-box>
     <a-box
-@@ -267,7 +283,7 @@
+      id="hawaiiBox"
+      change
+      position="3.5 4 -4"
       depth="0.2"
       height="3"
       width="3"
-      src="#pizza"
       src="#hawaiiPizza"
       shadow
     ></a-box>
     <a-plane
+      position="0 0 0"
+      rotation="-90 0 0"
+      width="20"
+      height="20"
+      color="#7BC8A4"
+      shadow
+    ></a-plane>
+  </a-entity>
+    </a-scene>
+  </body>
+</html>
