@@ -79,6 +79,58 @@
     }
   });
 </script>
+<script>
+AFRAME.registerComponent('selectingredient', {
+schema: {
+},
+
+init: function () {
+  var currentEvent = "animation-start";
+  var data = this.data;
+  var thisElId = this.el.getAttribute('id');
+  var elId = "";
+  console.log("selectingredient");
+  switch (thisElId) {
+    case "kaasObj":
+      elId = "checkBoxKaas"
+      break;
+    case "salamiObj":
+      elId = "checkBoxSalami"
+      break;
+    case "doughObj":
+      elId = "checkBoxDeeg"
+      break;
+    case "sauceObj":
+      elId = "checkBoxSaus";
+     break;
+    default:
+    elId = "checkBoxKaas";
+  }
+  this.el.addEventListener('mouseenter', function () {
+    document.getElementById(thisElId).emit(currentEvent);
+    switch (currentEvent) {
+      case "animation-start":
+      case "animation-restart":
+      case "animation-resume":
+        currentEvent = "animation-pause";
+      break;
+      case "animation-pause":
+        currentEvent = "animation-resume";
+      break;
+    }
+  });
+
+  this.el.addEventListener('mouseleave', function () {
+    document.getElementById(thisElId).emit("animation-pause");
+    document.getElementById(thisElId).setAttribute("scale", "0.5 0.5 0.5")
+    currentEvent = "animation-start";
+    console.log("test2");
+  });
+
+
+}
+});
+</script>
   </head>
   <body>
     <a-scene background="color: darkblue">
@@ -90,7 +142,7 @@
         <img id="hamPizza" src="https://cdn.glitch.com/cdddc178-3bc7-4793-beb0-f147ddbf5afd%2FhamPizza.jpeg?1624268298540">
         <img id="salamiPizza" src="https://cdn.glitch.com/cdddc178-3bc7-4793-beb0-f147ddbf5afd%2Fthumbnails%2FsalamiPizza.jpeg?1624268276899">
       </a-assets>
-      <a-camera>
+      <a-camera  position="0 3 -8">
         <a-cursor color="white"></a-cursor>
       </a-camera>
       <a-entity id="tutorialChoice" visible="false">
@@ -329,35 +381,71 @@
 
        <a-box
           id="doughObj"
+          selectingredient
+          animation="property: scale;
+                      to: 2;
+                      easing: linear;
+                      dur: 3000;
+                      loop: false;
+                      startEvents: animation-start;
+                      pauseEvents: animation-pause;
+                      resumeEvents: animation-resume;
+                      restartEvents: animation-restart"
           position="0 5.3 -19.5"
-          width="0.5"
-          height ="0.5"
-          color="black"
+          scale="0.5 0.5 0.5"
+          color="grey"
           >
 
         </a-box>
        <a-box
           id="sauceObj"
+          selectingredient
+          animation="property: scale;
+                      to: 2;
+                      easing: linear;
+                      dur: 3000;
+                      loop: false;
+                      startEvents: animation-start;
+                      pauseEvents: animation-pause;
+                      resumeEvents: animation-resume;
+                      restartEvents: animation-restart"
           position="2 7.3 -19.5"
-          width="0.5"
-          height ="0.5"
+          scale="0.5 0.5 0.5"
           color="green"
           >
         </a-box>
       <a-box
           id="kaasObj"
+          selectingredient
+          animation="property: scale;
+                      to: 2;
+                      easing: linear;
+                      dur: 3000;
+                      loop: false;
+                      startEvents: animation-start;
+                      pauseEvents: animation-pause;
+                      resumeEvents: animation-resume;
+                      restartEvents: animation-restart"
           position="0.5 7.3 -19.5"
-          width="0.5"
-          height ="0.5"
-          color="red"
+          scale="0.5 0.5 0.5"
+          color="yellow"
           >
         </a-box>
       <a-box
           id="salamiObj"
+          selectingredient
+          animation="property: scale;
+                      to: 2;
+                      easing: linear;
+                      dur: 3000;
+                      loop: false;
+                      startEvents: animation-start;
+                      pauseEvents: animation-pause;
+                      resumeEvents: animation-resume;
+                      restartEvents: animation-restart"
           position="1 3.3 -19.5"
-          width="0.5"
-          height ="0.5"
-          color="blue"
+          scale="0.5 0.5 0.5"
+          color="red"
           >
         </a-box>
       <a-box
