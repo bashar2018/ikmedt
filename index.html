@@ -44,6 +44,7 @@
             case "salamiChoiceMeter":
             document.getElementById('pizzaChoice').setAttribute('visible', 'false');
             document.getElementById('camera').setAttribute('position', '0 4 -8')
+            document.getElementById('cursor').setAttribute('color', 'black')
             document.getElementById('kitchen').setAttribute('visible', 'true')
             document.getElementById('pizzaChoice').setAttribute('position', '-5 -10 -10');
             break;
@@ -76,7 +77,6 @@
         document.getElementById(elId).emit("animation-pause");
         document.getElementById(elId).setAttribute("height", "0.2");
         currentEvent = "animation-start";
-        console.log("test2");
       });
     }
   });
@@ -105,9 +105,32 @@ init: function () {
     case "sauceObj":
       elId = "checkBoxSaus";
      break;
+    case "invisibleBox":
+      elId = "selectieMeter"
+      break;
     default:
     elId = "checkBoxKaas";
   }
+
+  if(elId == 'selectieMeter'){
+    document.getElementById(elId).addEventListener('animationcomplete', function(){
+      var stappenTellerValue = document.getElementById('stapBijhouder').getAttribute('value')
+      switch (stappenTellerValue){
+        case "Stap 1/3":
+          break;
+        case "Stap 2/3":
+          break;
+        case "Stap 3/3":
+          console.log('Pizza')
+          document.getElementById('checkBoxPizza').setAttribute('color', 'green');
+          document.getElementById('Pizza').setAttribute('position', '0.55 0.3 2.7');
+          document.getElementById('invisibleBox').setAttribute('position', '55 0.3 2.7');
+
+          break;
+      }
+    });
+  }
+
 
   document.getElementById(thisElId).addEventListener('animationcomplete', function(){
     console.log(thisElId);
@@ -122,6 +145,11 @@ init: function () {
             document.getElementById('checkBoxSalami').setAttribute('color', 'green');
             if (document.getElementById('checkBoxKaas').getAttribute('color') == 'green' && document.getElementById('checkBoxSaus').getAttribute('color') == 'green' && document.getElementById('checkBoxDeeg').getAttribute('color') == 'green'){
               document.getElementById('stapBijhouder').setAttribute('value', 'Stap 2/3')
+              document.getElementById('toDoListSalamiText').setAttribute('value', 'To do list: selecteer de volgende ingredienten op volgorde')
+              document.getElementById('checkBoxSalami').setAttribute('color', 'red');
+              document.getElementById('checkBoxDeeg').setAttribute('color', 'red');
+              document.getElementById('checkBoxSaus').setAttribute('color', 'red');
+              document.getElementById('checkBoxKaas').setAttribute('color', 'red');
             }
             break;
         case "kaasObj":
@@ -129,6 +157,11 @@ init: function () {
             document.getElementById('checkBoxKaas').setAttribute('color', 'green');
             if (document.getElementById('checkBoxSalami').getAttribute('color') == 'green' && document.getElementById('checkBoxSaus').getAttribute('color') == 'green' && document.getElementById('checkBoxDeeg').getAttribute('color') == 'green'){
               document.getElementById('stapBijhouder').setAttribute('value', 'Stap 2/3')
+              document.getElementById('toDoListSalamiText').setAttribute('value', 'To do list: selecteer de volgende ingredienten op volgorde')
+              document.getElementById('checkBoxSalami').setAttribute('color', 'red');
+              document.getElementById('checkBoxDeeg').setAttribute('color', 'red');
+              document.getElementById('checkBoxSaus').setAttribute('color', 'red');
+              document.getElementById('checkBoxKaas').setAttribute('color', 'red');
             }
         break;
         case "sauceObj":
@@ -136,6 +169,12 @@ init: function () {
             document.getElementById('checkBoxSaus').setAttribute('color', 'green');
             if (document.getElementById('checkBoxSalami').getAttribute('color') == 'green' && document.getElementById('checkBoxKaas').getAttribute('color') == 'green' && document.getElementById('checkBoxDeeg').getAttribute('color') == 'green'){
               document.getElementById('stapBijhouder').setAttribute('value', 'Stap 2/3')
+              document.getElementById('toDoListSalamiText').setAttribute('value', 'To do list: selecteer de volgende ingredienten op volgorde')
+              document.getElementById('checkBoxSalami').setAttribute('color', 'red');
+              document.getElementById('checkBoxDeeg').setAttribute('color', 'red');
+              document.getElementById('checkBoxSaus').setAttribute('color', 'red');
+              document.getElementById('checkBoxKaas').setAttribute('color', 'red');
+
             }
         break;
         case "doughObj":
@@ -143,38 +182,165 @@ init: function () {
             document.getElementById('checkBoxDeeg').setAttribute('color', 'green');
             if (document.getElementById('checkBoxSalami').getAttribute('color') == 'green' && document.getElementById('checkBoxKaas').getAttribute('color') == 'green' && document.getElementById('checkBoxSaus').getAttribute('color') == 'green'){
               document.getElementById('stapBijhouder').setAttribute('value', 'Stap 2/3')
+              document.getElementById('toDoListSalamiText').setAttribute('value', 'To do list: selecteer de volgende ingredienten op volgorde')
+              document.getElementById('checkBoxSalami').setAttribute('color', 'red');
+              document.getElementById('checkBoxDeeg').setAttribute('color', 'red');
+              document.getElementById('checkBoxSaus').setAttribute('color', 'red');
+              document.getElementById('checkBoxKaas').setAttribute('color', 'red');
             }
         break;
       }
       break;
       case "Stap 2/3":
+      switch (thisElId){
+        case "salamiObj":
+          if(document.getElementById('checkBoxDeeg').getAttribute('color') == 'green' && document.getElementById('checkBoxSaus').getAttribute('color') == 'green'){
+            document.getElementById('salamiObj').setAttribute('visible', 'false');
+            document.getElementById('salamiSchijfjes').setAttribute('visible', 'true');
+            document.getElementById('checkBoxSalami').setAttribute('color', 'green');
+            if (document.getElementById('checkBoxKaas').getAttribute('color') == 'green' && document.getElementById('checkBoxSaus').getAttribute('color') == 'green' && document.getElementById('checkBoxDeeg').getAttribute('color') == 'green'){
+              document.getElementById('stapBijhouder').setAttribute('value', 'Stap 3/3')
+              document.getElementById('toDoListSalamiText').setAttribute('value', 'To do list: selecteer eerst de pizza en dan de oven')
+              document.getElementById('tekst1En2').setAttribute('visible', 'false');
+              document.getElementById('checkBoxPizza').setAttribute('visible', 'true');
+              document.getElementById('checkBoxOven').setAttribute('visible', 'true');
+              document.getElementById('pizzaTekstStap3').setAttribute('visible', 'true');
+              document.getElementById('ovenTekstStap3').setAttribute('visible', 'true');
+              document.getElementById('checkBoxSalami').setAttribute('visible', 'false');
+              document.getElementById('checkBoxDeeg').setAttribute('visible', 'false');
+              document.getElementById('checkBoxSaus').setAttribute('visible', 'false');
+              document.getElementById('checkBoxKaas').setAttribute('visible', 'false');
+            }
+          }
+
+            break;
+        case "kaasObj":
+          if(document.getElementById('checkBoxDeeg').getAttribute('color') == 'green' && document.getElementById('checkBoxSaus').getAttribute('color') == 'green' && document.getElementById('checkBoxSalami').getAttribute('color') == 'green'){
+            document.getElementById('kaasObj').setAttribute('visible', 'false');
+            document.getElementById('kaasOpPizza').setAttribute('visible', 'true');
+            document.getElementById('checkBoxKaas').setAttribute('color', 'green');
+            if (document.getElementById('checkBoxSalami').getAttribute('color') == 'green' && document.getElementById('checkBoxSaus').getAttribute('color') == 'green' && document.getElementById('checkBoxDeeg').getAttribute('color') == 'green'){
+              document.getElementById('stapBijhouder').setAttribute('value', 'Stap 3/3');
+              document.getElementById('selectieMeter').setAttribute('visible', 'true');
+              document.getElementById('toDoListSalamiText').setAttribute('value', 'To do list: selecteer eerst de pizza en dan de oven');
+              document.getElementById('tekst1En2').setAttribute('visible', 'false');
+              document.getElementById('checkBoxPizza').setAttribute('visible', 'true');
+              document.getElementById('checkBoxOven').setAttribute('visible', 'true');
+              document.getElementById('pizzaTekstStap3').setAttribute('visible', 'true');
+              document.getElementById('ovenTekstStap3').setAttribute('visible', 'true');
+              document.getElementById('checkBoxSalami').setAttribute('visible', 'false');
+              document.getElementById('checkBoxDeeg').setAttribute('visible', 'false');
+              document.getElementById('checkBoxSaus').setAttribute('visible', 'false');
+              document.getElementById('checkBoxKaas').setAttribute('visible', 'false');
+            }
+          }
+
+        break;
+        case "sauceObj":
+          if(document.getElementById('checkBoxDeeg').getAttribute('color') == 'green'){
+            document.getElementById('sauceObj').setAttribute('visible', 'false');
+            document.getElementById('sausOpPizza').setAttribute('visible', 'true');
+            document.getElementById('checkBoxSaus').setAttribute('color', 'green');
+            if (document.getElementById('checkBoxSalami').getAttribute('color') == 'green' && document.getElementById('checkBoxKaas').getAttribute('color') == 'green' && document.getElementById('checkBoxDeeg').getAttribute('color') == 'green'){
+              document.getElementById('stapBijhouder').setAttribute('value', 'Stap 3/3')
+              document.getElementById('toDoListSalamiText').setAttribute('value', 'To do list: selecteer eerst de pizza en dan de oven')
+              document.getElementById('tekst1En2').setAttribute('visible', 'false');
+              document.getElementById('checkBoxPizza').setAttribute('visible', 'true');
+              document.getElementById('checkBoxOven').setAttribute('visible', 'true');
+              document.getElementById('pizzaTekstStap3').setAttribute('visible', 'true');
+              document.getElementById('ovenTekstStap3').setAttribute('visible', 'true');
+              document.getElementById('checkBoxSalami').setAttribute('visible', 'false');
+              document.getElementById('checkBoxDeeg').setAttribute('visible', 'false');
+              document.getElementById('checkBoxSaus').setAttribute('visible', 'false');
+              document.getElementById('checkBoxKaas').setAttribute('visible', 'false');
+            }
+          }
+
+        break;
+        case "doughObj":
+            document.getElementById('doughObj').setAttribute('visible', 'false');
+            document.getElementById('pizzaDeeg').setAttribute('visible', 'true');
+            document.getElementById('checkBoxDeeg').setAttribute('color', 'green');
+            if (document.getElementById('checkBoxSalami').getAttribute('color') == 'green' && document.getElementById('checkBoxKaas').getAttribute('color') == 'green' && document.getElementById('checkBoxSaus').getAttribute('color') == 'green'){
+              document.getElementById('stapBijhouder').setAttribute('value', 'Stap 3/3')
+              document.getElementById('toDoListSalamiText').setAttribute('value', 'To do list: selecteer eerst de pizza en dan de oven')
+              document.getElementById('tekst1En2').setAttribute('visible', 'false');
+              document.getElementById('checkBoxPizza').setAttribute('visible', 'true');
+              document.getElementById('checkBoxOven').setAttribute('visible', 'true');
+              document.getElementById('pizzaTekstStap3').setAttribute('visible', 'true');
+              document.getElementById('ovenTekstStap3').setAttribute('visible', 'true');
+              document.getElementById('checkBoxSalami').setAttribute('visible', 'false');
+              document.getElementById('checkBoxDeeg').setAttribute('visible', 'false');
+              document.getElementById('checkBoxSaus').setAttribute('visible', 'false');
+              document.getElementById('checkBoxKaas').setAttribute('visible', 'false');
+            }
+        break;
+      }
+
       case "Stap 3/3":
+      switch (thisElId){
+        case "oven":
+            if (document.getElementById('checkBoxPizza').getAttribute('color') == 'green'){
+              document.getElementById('toDoListSalamiText').setAttribute('value', 'Het is gelukt!')
+              document.getElementById('pizzaDeeg').setAttribute('color', 'lightbrown');
+              document.getElementById('checkBoxOven').setAttribute('color', 'green');
+              document.getElementById('Pizza').setAttribute('position', '8 2.4 -7')
+            }
+            break;
+        // case "invisibleBox":
+        //   console.log('Pizza')
+        //   document.getElementById('checkBoxPizza').setAttribute('color', 'green');
+        //   document.getElementById('Pizza').setAttribute('position', '0.55 0.3 2.7')
+        //   break;
+      }
       break;
     }
   });
 
   this.el.addEventListener('mouseenter', function () {
-    document.getElementById(thisElId).emit(currentEvent);
-    switch (currentEvent) {
-      case "animation-start":
-      case "animation-restart":
-      case "animation-resume":
-        currentEvent = "animation-pause";
-      break;
-      case "animation-pause":
-        currentEvent = "animation-resume";
-      break;
+    if(thisElId != "invisibleBox"){
+      document.getElementById(thisElId).emit(currentEvent);
+      switch (currentEvent) {
+        case "animation-start":
+        case "animation-restart":
+        case "animation-resume":
+          currentEvent = "animation-pause";
+        break;
+        case "animation-pause":
+          currentEvent = "animation-resume";
+        break;
+      }
     }
+    if(thisElId == "invisibleBox"){
+      console.log("hallo Bashar");
+      console.log(elId)
+      document.getElementById(elId).emit(currentEvent);
+      switch (currentEvent) {
+        case "animation-start":
+        case "animation-restart":
+        case "animation-resume":
+          currentEvent = "animation-pause";
+        break;
+        case "animation-pause":
+          currentEvent = "animation-resume";
+        break;
+      }
+    }
+
   });
 
   this.el.addEventListener('mouseleave', function () {
     document.getElementById(thisElId).emit("animation-pause");
-    document.getElementById(thisElId).setAttribute("scale", "0.5 0.5 0.5")
+    if(elId == 'selectieMeter'){
+      document.getElementById(elId).emit("animation-pause");
+      console.log(elId);
+      document.getElementById(elId).setAttribute("width", "0.2");
+    }
+    if(thisElId == 'kaasObj' || thisElId == 'sauceObj' || thisElId == 'salamiObj' || thisElId == 'doughObj'){
+      document.getElementById(thisElId).setAttribute("scale", "0.5 0.5 0.5")
+    }
     currentEvent = "animation-start";
-    console.log("test2");
   });
-
-
 }
 });
 </script>
@@ -189,9 +355,11 @@ init: function () {
         <img id="hamPizza" src="https://cdn.glitch.com/cdddc178-3bc7-4793-beb0-f147ddbf5afd%2FhamPizza.jpeg?1624268298540">
         <img id="salamiPizza" src="https://cdn.glitch.com/cdddc178-3bc7-4793-beb0-f147ddbf5afd%2Fthumbnails%2FsalamiPizza.jpeg?1624268276899">
         <a-asset-item id="kitchenModel" src="assets/kitchen.gltf"></a-asset-item>
+        <a-asset-item id="ovenModel" src="assets/oven.gltf"></a-asset-item>
+        <a-asset-item id="pizzaKaas" src="assets/pizzakaas.gltf"></a-asset-item>
       </a-assets>
       <a-camera id="camera" position="1.8 4 4">
-        <a-cursor color="white"></a-cursor>
+        <a-cursor id="cursor" color="white"></a-cursor>
       </a-camera>
       <a-entity id="tutorialChoice" visible="true">
       <a-box
@@ -433,7 +601,7 @@ init: function () {
           animation="property: scale;
                       to: 2;
                       easing: linear;
-                      dur: 3000;
+                      dur: 300;
                       loop: false;
                       startEvents: animation-start;
                       pauseEvents: animation-pause;
@@ -451,7 +619,7 @@ init: function () {
           animation="property: scale;
                       to: 2;
                       easing: linear;
-                      dur: 3000;
+                      dur: 300;
                       loop: false;
                       startEvents: animation-start;
                       pauseEvents: animation-pause;
@@ -468,7 +636,7 @@ init: function () {
           animation="property: scale;
                       to: 2;
                       easing: linear;
-                      dur: 3000;
+                      dur: 300;
                       loop: false;
                       startEvents: animation-start;
                       pauseEvents: animation-pause;
@@ -485,7 +653,7 @@ init: function () {
           animation="property: scale;
                       to: 2;
                       easing: linear;
-                      dur: 3000;
+                      dur: 300;
                       loop: false;
                       startEvents: animation-start;
                       pauseEvents: animation-pause;
@@ -538,26 +706,51 @@ init: function () {
     ></a-box>
       <a-text
       id="stapBijhouder"
-      position="-9.7 7 -13"
+      position="-9.7 6 -10"
       rotation="0 90 0"
       color="white"
       value="Stap 1/3"
       height="2"
+      wrap-count="8"
+
       ></a-text>
       <a-text
       id="toDoListSalamiText"
-      position="-9.7 6 -5.5"
+      position="-9.7 7 -5.5"
       rotation="0 90 0"
       color="white"
-      value="To do list:
+      value="To do list: selecteer de volgende ingredienten."></a-text>
+      <a-box
+        id="checkBoxPizza"
+        position="-9.7 5.75 -5.5"
+        color="red"
+        width="0.2"
+        height="0.2"
+        depth="0.2"
+        visible="false"
+      ></a-box>
+      <a-box
+        id="checkBoxOven"
+        position="-9.7 4.75 -5.5"
+        color="red"
+        width="0.2"
+        height="0.2"
+        depth="0.2"
+        visible="false"
+      ></a-box>
+      <a-text position="-9.7 5.75 -5.8" rotation="0 90 0" color="white" visible="false" id="pizzaTekstStap3"
+      value="Pizza"></a-text>
+      <a-text position="-9.7 4.75 -5.8" rotation="0 90 0" color="white" visible="false" id="ovenTekstStap3"
+      value="Oven"></a-text>
+      <a-text id="tekst1En2" position="-9.7 5.75 -5.8" rotation="0 90 0" color="white"
+      value="
+                  -     1 Deeg
 
-            -      Deeg
+                  -     2 Saus
 
-            -      Saus
+                  -     3 Salami
 
-            -      Salami
-
-            -      Kaas"></a-text>
+                  -     4 Kaas"></a-text>
     <a-box
       id="checkBoxSalami"
       position="-9.7 5.55 -5.5"
@@ -601,7 +794,62 @@ init: function () {
       color="#FFFFFF"
       shadow
     ></a-box>
-    <a-entity gltf-model="#kitchenModel" position="8.4 0 -10" rotation="0 -90 0"modify-materials></a-entity>
+    <a-entity id="Pizza"  position="0 0 0"
+    animation="property: height;
+              to: 1.5;
+              easing: linear;
+              dur: 3000;
+              loop: false;
+              startEvents: animation-start;
+              pauseEvents: animation-pause;
+              resumeEvents: animation-resume;
+              restartEvents: animation-restart">
+      <a-entity id="kaasOpPizza" visible="false">
+        <a-entity gltf-model='#pizzaKaas' position="7.8 2.31 -7.1"></a-entity>
+        <a-entity gltf-model='#pizzaKaas' position="7.8 2.31 -6.6"></a-entity>
+        <a-entity gltf-model='#pizzaKaas' position="7.8 2.31 -7.6"></a-entity>
+        <a-entity gltf-model='#pizzaKaas' position="8.3 2.31 -7.1"></a-entity>
+        <a-entity gltf-model='#pizzaKaas' position="7.3 2.31 -7.1"></a-entity>
+      </a-entity>
+      <a-entity id="salamiSchijfjes" visible="false">
+        <a-cylinder position="7.8 2.26 -7" radius="0.1" height="0.12" color="brown"></a-cylinder>
+        <a-cylinder position="8 2.26 -7.2" radius="0.1" height="0.12" color="brown"></a-cylinder>
+        <a-cylinder position="7.6 2.26 -7.4" radius="0.1" height="0.12" color="brown"></a-cylinder>
+        <a-cylinder position="7.5 2.26 -6.8" radius="0.1" height="0.12" color="brown"></a-cylinder>
+        <a-cylinder position="7.4 2.26 -6.6" radius="0.1" height="0.12" color="brown"></a-cylinder>
+        <a-cylinder position="8.4 2.26 -7.2" radius="0.1" height="0.12" color="brown"></a-cylinder>
+        <a-cylinder position="8.6 2.26 -6.8" radius="0.1" height="0.12" color="brown"></a-cylinder>
+        <a-cylinder position="8.3 2.26 -7" radius="0.1" height="0.12" color="brown"></a-cylinder>
+        <a-cylinder position="7.7 2.26 -6.8" radius="0.1" height="0.12" color="brown"></a-cylinder>
+        <a-cylinder position="8 2.26 -6.5" radius="0.1" height="0.12" color="brown"></a-cylinder>
+      </a-entity>
+      <a-cylinder position="8 2.26 -7" radius="1" height="0.1" color="moccasin" id="pizzaDeeg" visible="false"></a-cylinder>
+      <a-cylinder position="8 2.26 -7" radius="0.9" height="0.11" color="red" id="sausOpPizza" visible="false"></a-cylinder>
+    </a-entity>
+    <a-entity gltf-model="#kitchenModel" position="8.4 0 -10" rotation="0 -90 0" modify-materials></a-entity>
+    <a-entity gltf-model="#ovenModel" position="8.6 2.9 -4" rotation="0 180 0" modify-materials id="Oven"></a-entity>
+    <a-box id="ovenHolder"
+    position="8.4 1.1 -4"
+    rotation="0 90 0"
+    width="3"
+    height="2.2"
+    depth="3"
+    color="#FFFFFF"
+    shadow
+  ></a-box>
+  <a-box id="selectieMeter" color="green" position="9.9 5.9 -5.5" height="0.2" width="0.2" depth="0.2" rotation="0 90 0" visible="false"
+  animation="property: width;
+            to: 3;
+            easing: linear;
+            dur: 3000;
+            loop: false;
+            startEvents: animation-start;
+            pauseEvents: animation-pause;
+            resumeEvents: animation-resume;
+            restartEvents: animation-restart"
+  ></a-box>
+  <a-box id="invisibleBox" color="green" position="8 2.4 -7" scale="1.5 1.5 1.5" rotation="0 90 0" selectingredient visible="false"
+  ></a-box>
   </a-entity>
     </a-scene>
   </body>
