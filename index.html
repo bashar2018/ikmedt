@@ -43,6 +43,8 @@
             case "hamChoiceMeter":
             case "salamiChoiceMeter":
             document.getElementById('pizzaChoice').setAttribute('visible', 'false');
+            document.getElementById('camera').setAttribute('position', '0 4 -8')
+            document.getElementById('kitchen').setAttribute('visible', 'true')
             document.getElementById('pizzaChoice').setAttribute('position', '-5 -10 -10');
             break;
 
@@ -106,6 +108,51 @@ init: function () {
     default:
     elId = "checkBoxKaas";
   }
+
+  document.getElementById(thisElId).addEventListener('animationcomplete', function(){
+    console.log(thisElId);
+    var stappenTellerValue = document.getElementById('stapBijhouder').getAttribute('value')
+
+    switch (stappenTellerValue){
+
+      case "Stap 1/3":
+      switch (thisElId){
+        case "salamiObj":
+            document.getElementById('salamiObj').setAttribute('position', '9.5 2.5 -12');
+            document.getElementById('checkBoxSalami').setAttribute('color', 'green');
+            if (document.getElementById('checkBoxKaas').getAttribute('color') == 'green' && document.getElementById('checkBoxSaus').getAttribute('color') == 'green' && document.getElementById('checkBoxDeeg').getAttribute('color') == 'green'){
+              document.getElementById('stapBijhouder').setAttribute('value', 'Stap 2/3')
+            }
+            break;
+        case "kaasObj":
+            document.getElementById('kaasObj').setAttribute('position', '9 2.5 -10');
+            document.getElementById('checkBoxKaas').setAttribute('color', 'green');
+            if (document.getElementById('checkBoxSalami').getAttribute('color') == 'green' && document.getElementById('checkBoxSaus').getAttribute('color') == 'green' && document.getElementById('checkBoxDeeg').getAttribute('color') == 'green'){
+              document.getElementById('stapBijhouder').setAttribute('value', 'Stap 2/3')
+            }
+        break;
+        case "sauceObj":
+            document.getElementById('sauceObj').setAttribute('position', '8 2.5 -10.5');
+            document.getElementById('checkBoxSaus').setAttribute('color', 'green');
+            if (document.getElementById('checkBoxSalami').getAttribute('color') == 'green' && document.getElementById('checkBoxKaas').getAttribute('color') == 'green' && document.getElementById('checkBoxDeeg').getAttribute('color') == 'green'){
+              document.getElementById('stapBijhouder').setAttribute('value', 'Stap 2/3')
+            }
+        break;
+        case "doughObj":
+            document.getElementById('doughObj').setAttribute('position', '9 2.5 -9');
+            document.getElementById('checkBoxDeeg').setAttribute('color', 'green');
+            if (document.getElementById('checkBoxSalami').getAttribute('color') == 'green' && document.getElementById('checkBoxKaas').getAttribute('color') == 'green' && document.getElementById('checkBoxSaus').getAttribute('color') == 'green'){
+              document.getElementById('stapBijhouder').setAttribute('value', 'Stap 2/3')
+            }
+        break;
+      }
+      break;
+      case "Stap 2/3":
+      case "Stap 3/3":
+      break;
+    }
+  });
+
   this.el.addEventListener('mouseenter', function () {
     document.getElementById(thisElId).emit(currentEvent);
     switch (currentEvent) {
@@ -143,10 +190,10 @@ init: function () {
         <img id="salamiPizza" src="https://cdn.glitch.com/cdddc178-3bc7-4793-beb0-f147ddbf5afd%2Fthumbnails%2FsalamiPizza.jpeg?1624268276899">
         <a-asset-item id="kitchenModel" src="assets/kitchen.gltf"></a-asset-item>
       </a-assets>
-      <a-camera  position="0 4 -8">
+      <a-camera id="camera" position="1.8 4 4">
         <a-cursor color="white"></a-cursor>
       </a-camera>
-      <a-entity id="tutorialChoice" visible="false">
+      <a-entity id="tutorialChoice" visible="true">
       <a-box
       id="sauceChoiceMeter"
       position="-5.2 4 -4"
@@ -157,7 +204,7 @@ init: function () {
       animation="property: height;
                   to: 3;
                   easing: linear;
-                  dur: 3000;
+                  dur: 300;
                   loop: false;
                   startEvents: animation-start;
                   pauseEvents: animation-pause;
@@ -174,7 +221,7 @@ init: function () {
       animation="property: height;
                 to: 3;
                 easing: linear;
-                dur: 3000;
+                dur: 300;
                 loop: false;
                 startEvents: animation-start;
                 pauseEvents: animation-pause;
@@ -191,7 +238,7 @@ init: function () {
       animation="property: height;
                 to: 3;
                 easing: linear;
-                dur: 3000;
+                dur: 300;
                 loop: false;
                 startEvents: animation-start;
                 pauseEvents: animation-pause;
@@ -258,7 +305,7 @@ init: function () {
     animation="property: height;
                 to: 3;
                 easing: linear;
-                dur: 3000;
+                dur: 300;
                 loop: false;
                 startEvents: animation-start;
                 pauseEvents: animation-pause;
@@ -275,7 +322,7 @@ init: function () {
     animation="property: height;
               to: 3;
               easing: linear;
-              dur: 3000;
+              dur: 300;
               loop: false;
               startEvents: animation-start;
               pauseEvents: animation-pause;
@@ -292,7 +339,7 @@ init: function () {
     animation="property: height;
               to: 3;
               easing: linear;
-              dur: 3000;
+              dur: 300;
               loop: false;
               startEvents: animation-start;
               pauseEvents: animation-pause;
@@ -348,7 +395,7 @@ init: function () {
       shadow
     ></a-plane>
   </a-entity>
-  <a-entity id="kitchen" visible="true">
+  <a-entity id="kitchen" visible="false">
     <a-plane
       position="0 0 -10"
       rotation="-90 0 0"
