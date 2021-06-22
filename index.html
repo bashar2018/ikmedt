@@ -141,8 +141,9 @@ init: function () {
         <img id="hawaiiPizza" src="https://cdn.glitch.com/cdddc178-3bc7-4793-beb0-f147ddbf5afd%2FhawaiiPizza.jpeg?1624268226949">
         <img id="hamPizza" src="https://cdn.glitch.com/cdddc178-3bc7-4793-beb0-f147ddbf5afd%2FhamPizza.jpeg?1624268298540">
         <img id="salamiPizza" src="https://cdn.glitch.com/cdddc178-3bc7-4793-beb0-f147ddbf5afd%2Fthumbnails%2FsalamiPizza.jpeg?1624268276899">
+        <a-asset-item id="kitchenModel" src="assets/kitchen.gltf"></a-asset-item>
       </a-assets>
-      <a-camera  position="0 3 -8">
+      <a-camera  position="0 4 -8">
         <a-cursor color="white"></a-cursor>
       </a-camera>
       <a-entity id="tutorialChoice" visible="false">
@@ -553,6 +554,7 @@ init: function () {
       color="#FFFFFF"
       shadow
     ></a-box>
+    <a-entity gltf-model="#kitchenModel" position="8.4 0 -10" rotation="0 -90 0"modify-materials></a-entity>
   </a-entity>
     </a-scene>
   </body>
