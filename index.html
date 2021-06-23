@@ -405,6 +405,7 @@ init: function () {
         <audio id="salamiSound" src="assets/salami.mp3" preload="auto"></audio>
         <audio id="hamSound" src="assets/ham.mp3" preload="auto"></audio>
         <audio id="hawaiiSound" src="assets/hawaii.mp3" preload="auto"></audio>
+        <audio id="victorySound" src="assets/victorySound.mp3" preload="auto"></audio>
         <a-asset-item id="kitchenModel" src="assets/kitchen.gltf"></a-asset-item>
         <a-asset-item id="ovenModel" src="assets/oven.gltf"></a-asset-item>
         <a-asset-item id="pizzaKaas" src="assets/pizzakaas.gltf"></a-asset-item>
@@ -505,7 +506,7 @@ init: function () {
         height="3"
         width="3"
         src="#pizza"
-        sound="src: #pizzaSound; on: mouseenter;"
+        sound="src: #pizzaSound; on: mouseenter; volume: 3;"
         shadow
       ></a-box>
       <a-plane
@@ -872,7 +873,7 @@ init: function () {
         <a-cylinder position="7.7 2.26 -6.8" radius="0.1" height="0.12" color="brown"></a-cylinder>
         <a-cylinder position="8 2.26 -6.5" radius="0.1" height="0.12" color="brown"></a-cylinder>
       </a-entity>
-      <a-cylinder position="8 2.26 -7" radius="1" height="0.1" color="moccasin" id="pizzaDeeg" visible="false" animation="property: components.material.material.color;
+      <a-cylinder position="8 2.26 -7" radius="1" height="0.1" color="moccasin" id="pizzaDeeg" visible="false"  animation="property: components.material.material.color;
                 type: color;
                 to: goldenrod;
                 easing: linear;
@@ -881,11 +882,13 @@ init: function () {
                 startEvents: animation-start;
                 pauseEvents: animation-pause;
                 resumeEvents: animation-resume;
-                restartEvents: animation-restart"></a-cylinder>
+                restartEvents: animation-restart"
+                sound="src: #victorySound; on: animationcomplete;"
+                ></a-cylinder>
       <a-cylinder position="8 2.26 -7" radius="0.9" height="0.11" color="red" id="sausOpPizza" visible="false"></a-cylinder>
     </a-entity>
     <a-entity gltf-model="#kitchenModel" position="8.4 0 -10" rotation="0 -90 0" modify-materials></a-entity>
-    <a-entity gltf-model="#ovenModel" position="8.6 2.9 -4" rotation="0 180 0" modify-materials id="Oven" selectingredient></a-entity>
+    <a-entity gltf-model="#ovenModel" position="8.6 2.9 -4" scale=" 1 1 1" rotation="0 180 0" modify-materials id="Oven" selectingredient ></a-entity>
     <a-box id="ovenHolder"
     position="8.4 1.1 -4"
     rotation="0 90 0"
@@ -917,7 +920,7 @@ init: function () {
             resumeEvents: animation-resume;
             restartEvents: animation-restart"
   ></a-box>
-  <a-box id="invisibleBox" color="green" position="8 2.4 -7" scale="1.5 1.5 1.5" rotation="0 90 0" selectingredient visible="false"
+  <a-box id="invisibleBox" color="green" position="8 2.4 -7" scale="1.8 0.1 1.8" rotation="0 90 0" selectingredient visible="false"
   ></a-box>
   </a-entity>
     </a-scene>
