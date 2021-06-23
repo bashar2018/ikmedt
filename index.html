@@ -88,31 +88,35 @@ schema: {
 
 init: function () {
   var currentEvent = "animation-start";
+  var currentEventOven= "animation-start";
   var data = this.data;
   var thisElId = this.el.getAttribute('id');
   var elId = "";
   console.log("selectingredient");
   switch (thisElId) {
     case "kaasObj":
-      elId = "checkBoxKaas"
+      elId = "checkBoxKaas";
       break;
     case "salamiObj":
-      elId = "checkBoxSalami"
+      elId = "checkBoxSalami";
       break;
     case "doughObj":
-      elId = "checkBoxDeeg"
+      elId = "checkBoxDeeg";
       break;
     case "sauceObj":
       elId = "checkBoxSaus";
      break;
+    case "Oven":
+      elId = "selectieMeterOven";
+      break;
     case "invisibleBox":
-      elId = "selectieMeter"
+      elId = "selectieMeterPizza";
       break;
     default:
     elId = "checkBoxKaas";
   }
 
-  if(elId == 'selectieMeter'){
+  if(elId == 'selectieMeterPizza'){
     document.getElementById(elId).addEventListener('animationcomplete', function(){
       var stappenTellerValue = document.getElementById('stapBijhouder').getAttribute('value')
       switch (stappenTellerValue){
@@ -121,15 +125,41 @@ init: function () {
         case "Stap 2/3":
           break;
         case "Stap 3/3":
-          console.log('Pizza')
-          document.getElementById('checkBoxPizza').setAttribute('color', 'green');
-          document.getElementById('Pizza').setAttribute('position', '0.55 0.3 2.7');
-          document.getElementById('invisibleBox').setAttribute('position', '55 0.3 2.7');
-
+            console.log("pizzaselectie");
+            document.getElementById('checkBoxPizza').setAttribute('color', 'green');
+            document.getElementById('Pizza').setAttribute('position', '0.55 0.4 2.7');
+            document.getElementById('invisibleBox').setAttribute('position', '55 0.3 2.7');
+            document.getElementById('selectieMeterPizza').setAttribute('visible', 'false')
+            document.getElementById('selectieMeterOven').setAttribute('visible', 'true')
           break;
       }
     });
   }
+
+  if(elId == 'selectieMeterOven'){
+    document.getElementById(elId).addEventListener('animationcomplete', function(){
+      var stappenTellerValue = document.getElementById('stapBijhouder').getAttribute('value')
+      switch (stappenTellerValue){
+        case "Stap 1/3":
+          break;
+        case "Stap 2/3":
+          break;
+        case "Stap 3/3":
+            console.log("ovenselectie");
+            document.getElementById('checkBoxOven').setAttribute('color', 'green');
+            document.getElementById('Pizza').setAttribute('position', '0 0 0');
+            document.getElementById('pizzaDeeg').setAttribute('color', 'goldenrod');
+            document.getElementById('selectieMeterOven').setAttribute('visible', 'false')
+            document.getElementById('toDoListSalamiText').setAttribute('value', "Het is gelukt! Geniet van je pizza!")
+            document.getElementById('checkBoxOven').setAttribute('visible', 'false')
+            document.getElementById('checkBoxPizza').setAttribute('visible', 'false')
+            document.getElementById('pizzaTekstStap3').setAttribute('visible', 'false')
+            document.getElementById('ovenTekstStap3').setAttribute('visible', 'false')
+          break;
+      }
+    });
+  }
+
 
 
   document.getElementById(thisElId).addEventListener('animationcomplete', function(){
@@ -221,7 +251,7 @@ init: function () {
             document.getElementById('checkBoxKaas').setAttribute('color', 'green');
             if (document.getElementById('checkBoxSalami').getAttribute('color') == 'green' && document.getElementById('checkBoxSaus').getAttribute('color') == 'green' && document.getElementById('checkBoxDeeg').getAttribute('color') == 'green'){
               document.getElementById('stapBijhouder').setAttribute('value', 'Stap 3/3');
-              document.getElementById('selectieMeter').setAttribute('visible', 'true');
+              document.getElementById('selectieMeterPizza').setAttribute('visible', 'true');
               document.getElementById('toDoListSalamiText').setAttribute('value', 'To do list: selecteer eerst de pizza en dan de oven');
               document.getElementById('tekst1En2').setAttribute('visible', 'false');
               document.getElementById('checkBoxPizza').setAttribute('visible', 'true');
@@ -278,27 +308,27 @@ init: function () {
       }
 
       case "Stap 3/3":
-      switch (thisElId){
-        case "oven":
-            if (document.getElementById('checkBoxPizza').getAttribute('color') == 'green'){
-              document.getElementById('toDoListSalamiText').setAttribute('value', 'Het is gelukt!')
-              document.getElementById('pizzaDeeg').setAttribute('color', 'lightbrown');
-              document.getElementById('checkBoxOven').setAttribute('color', 'green');
-              document.getElementById('Pizza').setAttribute('position', '8 2.4 -7')
-            }
-            break;
-        // case "invisibleBox":
-        //   console.log('Pizza')
-        //   document.getElementById('checkBoxPizza').setAttribute('color', 'green');
-        //   document.getElementById('Pizza').setAttribute('position', '0.55 0.3 2.7')
-        //   break;
-      }
+      // switch (thisElId){
+      //   case "oven":
+      //       if (document.getElementById('checkBoxPizza').getAttribute('color') == 'green'){
+      //         document.getElementById('toDoListSalamiText').setAttribute('value', 'Het is gelukt!')
+      //         document.getElementById('pizzaDeeg').setAttribute('color', 'lightbrown');
+      //         document.getElementById('checkBoxOven').setAttribute('color', 'green');
+      //         document.getElementById('Pizza').setAttribute('position', '8 2.4 -7')
+      //       }
+      //       break;
+      //   // case "invisibleBox":
+      //   //   console.log('Pizza')
+      //   //   document.getElementById('checkBoxPizza').setAttribute('color', 'green');
+      //   //   document.getElementById('Pizza').setAttribute('position', '0.55 0.3 2.7')
+      //   //   break;
+      // }
       break;
     }
   });
 
   this.el.addEventListener('mouseenter', function () {
-    if(thisElId != "invisibleBox"){
+    if(thisElId != "invisibleBox" && thisElId != "Oven"){
       document.getElementById(thisElId).emit(currentEvent);
       switch (currentEvent) {
         case "animation-start":
@@ -311,9 +341,23 @@ init: function () {
         break;
       }
     }
-    if(thisElId == "invisibleBox"){
+    if(thisElId == "invisibleBox" || thisElId == "Oven"){
       console.log("hallo Bashar");
       console.log(elId)
+      if ((document.getElementById('checkBoxPizza').getAttribute('color') == 'red' && thisElId != 'Oven') || (document.getElementById('checkBoxPizza').getAttribute('color') == 'green' && thisElId == 'Oven')){
+      if (document.getElementById('checkBoxPizza').getAttribute('color') == 'green' && thisElId == 'Oven'){
+        document.getElementById('pizzaDeeg').emit(currentEventOven);
+        switch (currentEvent) {
+          case "animation-start":
+          case "animation-restart":
+          case "animation-resume":
+            currentEventOven = "animation-pause";
+          break;
+          case "animation-pause":
+            currentEventOven = "animation-resume";
+          break;
+        }
+      }
       document.getElementById(elId).emit(currentEvent);
       switch (currentEvent) {
         case "animation-start":
@@ -326,12 +370,13 @@ init: function () {
         break;
       }
     }
+    }
 
   });
 
   this.el.addEventListener('mouseleave', function () {
     document.getElementById(thisElId).emit("animation-pause");
-    if(elId == 'selectieMeter'){
+    if(elId == 'selectieMeterPizza' || elId == 'selectieMeterOven'){
       document.getElementById(elId).emit("animation-pause");
       console.log(elId);
       document.getElementById(elId).setAttribute("width", "0.2");
@@ -354,6 +399,12 @@ init: function () {
         <img id="hawaiiPizza" src="https://cdn.glitch.com/cdddc178-3bc7-4793-beb0-f147ddbf5afd%2FhawaiiPizza.jpeg?1624268226949">
         <img id="hamPizza" src="https://cdn.glitch.com/cdddc178-3bc7-4793-beb0-f147ddbf5afd%2FhamPizza.jpeg?1624268298540">
         <img id="salamiPizza" src="https://cdn.glitch.com/cdddc178-3bc7-4793-beb0-f147ddbf5afd%2Fthumbnails%2FsalamiPizza.jpeg?1624268276899">
+        <audio id="pizzaSound" src="assets/pizza.mp3" preload="auto"></audio>
+        <audio id="sausSound" src="assets/saus.mp3" preload="auto"></audio>
+        <audio id="deegSound" src="assets/deeg.mp3" preload="auto"></audio>
+        <audio id="salamiSound" src="assets/salami.mp3" preload="auto"></audio>
+        <audio id="hamSound" src="assets/ham.mp3" preload="auto"></audio>
+        <audio id="hawaiiSound" src="assets/hawaii.mp3" preload="auto"></audio>
         <a-asset-item id="kitchenModel" src="assets/kitchen.gltf"></a-asset-item>
         <a-asset-item id="ovenModel" src="assets/oven.gltf"></a-asset-item>
         <a-asset-item id="pizzaKaas" src="assets/pizzakaas.gltf"></a-asset-item>
@@ -369,10 +420,11 @@ init: function () {
       height="0.2"
       width="0.4"
       color="lightgreen"
+      sound="src: #sausSound; on: mouseenter;"
       animation="property: height;
                   to: 3;
                   easing: linear;
-                  dur: 300;
+                  dur: 3000;
                   loop: false;
                   startEvents: animation-start;
                   pauseEvents: animation-pause;
@@ -389,7 +441,7 @@ init: function () {
       animation="property: height;
                 to: 3;
                 easing: linear;
-                dur: 300;
+                dur: 3000;
                 loop: false;
                 startEvents: animation-start;
                 pauseEvents: animation-pause;
@@ -406,7 +458,7 @@ init: function () {
       animation="property: height;
                 to: 3;
                 easing: linear;
-                dur: 300;
+                dur: 3000;
                 loop: false;
                 startEvents: animation-start;
                 pauseEvents: animation-pause;
@@ -431,10 +483,12 @@ init: function () {
         height="3"
         width="3"
         src="#saus"
+        sound="src: #sausSound; on: mouseenter;"
         shadow
       ></a-box>
       <a-box
         id="doughBox"
+        sound="src: #deegSound; on: mouseenter;"
         change
         position="0 4 -4"
         depth="0.2"
@@ -451,6 +505,7 @@ init: function () {
         height="3"
         width="3"
         src="#pizza"
+        sound="src: #pizzaSound; on: mouseenter;"
         shadow
       ></a-box>
       <a-plane
@@ -473,7 +528,7 @@ init: function () {
     animation="property: height;
                 to: 3;
                 easing: linear;
-                dur: 300;
+                dur: 3000;
                 loop: false;
                 startEvents: animation-start;
                 pauseEvents: animation-pause;
@@ -490,7 +545,7 @@ init: function () {
     animation="property: height;
               to: 3;
               easing: linear;
-              dur: 300;
+              dur: 3000;
               loop: false;
               startEvents: animation-start;
               pauseEvents: animation-pause;
@@ -507,7 +562,7 @@ init: function () {
     animation="property: height;
               to: 3;
               easing: linear;
-              dur: 300;
+              dur: 3000;
               loop: false;
               startEvents: animation-start;
               pauseEvents: animation-pause;
@@ -532,6 +587,7 @@ init: function () {
       height="3"
       width="3"
       src="#salamiPizza"
+      sound="src: #salamiSound; on: mouseenter;"
       shadow
     ></a-box>
     <a-box
@@ -542,6 +598,7 @@ init: function () {
       height="3"
       width="3"
       src="#hamPizza"
+      sound="src: #hamSound; on: mouseenter;"
       shadow
     ></a-box>
     <a-box
@@ -552,6 +609,7 @@ init: function () {
       height="3"
       width="3"
       src="#hawaiiPizza"
+      sound="src: #hawaiiSound; on: mouseenter;"
       shadow
     ></a-box>
     <a-plane
@@ -794,16 +852,7 @@ init: function () {
       color="#FFFFFF"
       shadow
     ></a-box>
-    <a-entity id="Pizza"  position="0 0 0"
-    animation="property: height;
-              to: 1.5;
-              easing: linear;
-              dur: 3000;
-              loop: false;
-              startEvents: animation-start;
-              pauseEvents: animation-pause;
-              resumeEvents: animation-resume;
-              restartEvents: animation-restart">
+    <a-entity id="Pizza"  position="0 0 0">
       <a-entity id="kaasOpPizza" visible="false">
         <a-entity gltf-model='#pizzaKaas' position="7.8 2.31 -7.1"></a-entity>
         <a-entity gltf-model='#pizzaKaas' position="7.8 2.31 -6.6"></a-entity>
@@ -823,11 +872,20 @@ init: function () {
         <a-cylinder position="7.7 2.26 -6.8" radius="0.1" height="0.12" color="brown"></a-cylinder>
         <a-cylinder position="8 2.26 -6.5" radius="0.1" height="0.12" color="brown"></a-cylinder>
       </a-entity>
-      <a-cylinder position="8 2.26 -7" radius="1" height="0.1" color="moccasin" id="pizzaDeeg" visible="false"></a-cylinder>
+      <a-cylinder position="8 2.26 -7" radius="1" height="0.1" color="moccasin" id="pizzaDeeg" visible="false" animation="property: components.material.material.color;
+                type: color;
+                to: goldenrod;
+                easing: linear;
+                dur: 3000;
+                loop: false;
+                startEvents: animation-start;
+                pauseEvents: animation-pause;
+                resumeEvents: animation-resume;
+                restartEvents: animation-restart"></a-cylinder>
       <a-cylinder position="8 2.26 -7" radius="0.9" height="0.11" color="red" id="sausOpPizza" visible="false"></a-cylinder>
     </a-entity>
     <a-entity gltf-model="#kitchenModel" position="8.4 0 -10" rotation="0 -90 0" modify-materials></a-entity>
-    <a-entity gltf-model="#ovenModel" position="8.6 2.9 -4" rotation="0 180 0" modify-materials id="Oven"></a-entity>
+    <a-entity gltf-model="#ovenModel" position="8.6 2.9 -4" rotation="0 180 0" modify-materials id="Oven" selectingredient></a-entity>
     <a-box id="ovenHolder"
     position="8.4 1.1 -4"
     rotation="0 90 0"
@@ -837,7 +895,18 @@ init: function () {
     color="#FFFFFF"
     shadow
   ></a-box>
-  <a-box id="selectieMeter" color="green" position="9.9 5.9 -5.5" height="0.2" width="0.2" depth="0.2" rotation="0 90 0" visible="false"
+  <a-box id="selectieMeterPizza" color="green" position="9.9 5.9 -5.5" height="0.2" width="0.2" depth="0.2" rotation="0 90 0" visible="false"
+  animation="property: width;
+            to: 3;
+            easing: linear;
+            dur: 3000;
+            loop: false;
+            startEvents: animation-start;
+            pauseEvents: animation-pause;
+            resumeEvents: animation-resume;
+            restartEvents: animation-restart"
+  ></a-box>
+  <a-box id="selectieMeterOven" color="green" position="9.9 5.9 -5.5" height="0.2" width="0.2" depth="0.2" rotation="0 90 0" visible="false"
   animation="property: width;
             to: 3;
             easing: linear;
