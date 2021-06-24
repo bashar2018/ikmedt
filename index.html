@@ -414,6 +414,7 @@ init: function () {
         <a-asset-item id="ovenModel" src="assets/oven.gltf"></a-asset-item>
         <a-asset-item id="salamiModel" src="assets/salami.gltf"></a-asset-item>
         <a-asset-item id="pizzaKaas" src="assets/pizzakaas.gltf"></a-asset-item>
+        <a-asset-item id="sausModel" src="assets/sausModel.gltf"></a-asset-item>
       </a-assets>
       <a-camera id="camera" position="1.8 4 4">
         <a-cursor id="cursor" color="white"></a-cursor>
@@ -673,41 +674,8 @@ init: function () {
                   rotation="0 90 0"
 
                   ></a-entity>
-       <!-- <a-box
-          id="doughObj"
-          selectingredient
-          animation="property: scale;
-                      to: 2;
-                      easing: linear;
-                      dur: 300;
-                      loop: false;
-                      startEvents: animation-start;
-                      pauseEvents: animation-pause;
-                      resumeEvents: animation-resume;
-                      restartEvents: animation-restart"
-          position="0 5.3 -19.5"
-          scale="0.5 0.5 0.5"
-          color="grey"
-          >
+     
 
-        </a-box> -->
-       <a-box
-          id="sauceObj"
-          selectingredient
-          animation="property: scale;
-                      to: 2;
-                      easing: linear;
-                      dur: 300;
-                      loop: false;
-                      startEvents: animation-start;
-                      pauseEvents: animation-pause;
-                      resumeEvents: animation-resume;
-                      restartEvents: animation-restart"
-          position="2 7.3 -19.5"
-          scale="0.5 0.5 0.5"
-          color="green"
-          >
-        </a-box>
         <a-entity id="kaasObj" gltf-model="#kaasModel" position="0.5 7.15 -19.5" modify-materials animation="property: scale;
                     to: 1 1.5 1;
                     easing: linear;
@@ -721,23 +689,21 @@ init: function () {
                     rotation="-15 180 0"
                     scale="1 1 1"
                     ></a-entity>
-      <!-- <a-box
-          id="kaasObj"
-          selectingredient
-          animation="property: scale;
-                      to: 2;
-                      easing: linear;
-                      dur: 300;
-                      loop: false;
-                      startEvents: animation-start;
-                      pauseEvents: animation-pause;
-                      resumeEvents: animation-resume;
-                      restartEvents: animation-restart"
-          position="0.5 7.3 -19.5"
-          scale="0.5 0.5 0.5"
-          color="yellow"
-          >
-        </a-box> -->
+                                       
+        <a-entity id="sauceObj" gltf-model="#sausModel" position="2 7.3 -19.5" modify-materials animation="property: scale;
+                    to: 0.5 1.1 0.5;
+                    easing: linear;
+                    dur: 2000;
+                    loop: false;
+                    startEvents: animation-start;
+                    pauseEvents: animation-pause;
+                    resumeEvents: animation-resume;
+                    restartEvents: animation-restart"
+                    selectingredient
+                    rotation="-15 180 0"
+                    scale="1 1 1"
+                    ></a-entity>
+                  
         <a-entity id="salamiObj" gltf-model="#salamiModel" position="1 3 -19.5" modify-materials animation="property: scale;
                     to: 1 1.5 1;
                     easing: linear;
@@ -751,23 +717,6 @@ init: function () {
                     selectingredient
                     scale="1 1 1"
                     ></a-entity>
-      <!-- <a-box
-          id="salamiObj"
-          selectingredient
-          animation="property: scale;
-                      to: 2;
-                      easing: linear;
-                      dur: 300;
-                      loop: false;
-                      startEvents: animation-start;
-                      pauseEvents: animation-pause;
-                      resumeEvents: animation-resume;
-                      restartEvents: animation-restart"
-          position="1 3.3 -19.5"
-          scale="0.5 0.5 0.5"
-          color="red"
-          >
-        </a-box> -->
       <a-box
         id="topShelf"
         position="0 7 -19.5"
