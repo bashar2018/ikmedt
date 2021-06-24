@@ -317,22 +317,7 @@ init: function () {
   });
 
   this.el.addEventListener('mouseenter', function () {
-    var stappenTellerValue = document.getElementById('stapBijhouder').getAttribute('value')
     if(thisElId != "invisibleBox" && thisElId != "Oven"){
-      if(stappenTellerValue == "Stap 2/3"){
-        if (thisElId == "salamiObj" && (document.getElementById('checkBoxDeeg').getAttribute('color') != 'green' || document.getElementById('checkBoxSaus').getAttribute('color') != 'green')){
-          var sound = document.querySelector('[sound="src: #errorVolgordeMessage;"]');
-          sound.components.sound.playSound();
-        }
-        if (thisElId == "kaasObj" && (document.getElementById('checkBoxDeeg').getAttribute('color') != 'green' || document.getElementById('checkBoxSaus').getAttribute('color') != 'green' || document.getElementById('checkBoxSalami').getAttribute('color') != 'green')){
-          var sound = document.querySelector('[sound="src: #errorVolgordeMessage;"]');
-          sound.components.sound.playSound();
-        }
-        if (thisElId == "sauceObj" && document.getElementById('checkBoxDeeg').getAttribute('color') != 'green'){
-          var sound = document.querySelector('[sound="src: #errorVolgordeMessage;"]');
-          sound.components.sound.playSound();
-        }
-      }
       document.getElementById(thisElId).emit(currentEvent);
       switch (currentEvent) {
         case "animation-start":
@@ -406,7 +391,6 @@ init: function () {
         <audio id="pizzaSound" src="assets/pizza.mp3" preload="auto"></audio>
         <audio id="sausSound" src="assets/saus.mp3" preload="auto"></audio>
         <audio id="deegSound" src="assets/deeg.mp3" preload="auto"></audio>
-        <audio id="errorVolgordeMessage" src="assets/errorVolgordeMessage.mp3" preload="auto"></audio>
         <audio id="salamiSound" src="assets/salami.mp3" preload="auto"></audio>
         <audio id="hamSound" src="assets/ham.mp3" preload="auto"></audio>
         <audio id="hawaiiSound" src="assets/hawaii.mp3" preload="auto"></audio>
@@ -690,8 +674,6 @@ init: function () {
                     selectingredient
                     rotation="-15 180 0"
                     scale="1 1 1"
-                    sound="src: #errorVolgordeMessage;"
-
                     ></a-entity>
 
         <a-entity id="sauceObj" gltf-model="#sausModel" position="2 7 -19.5" modify-materials animation="property: scale;
@@ -706,8 +688,6 @@ init: function () {
                     selectingredient
                     rotation="0 180 0"
                     scale="1 1 1"
-                    sound="src: #errorVolgordeMessage;"
-
                     ></a-entity>
 
         <a-entity id="salamiObj" gltf-model="#salamiModel" position="1 3 -19.5" modify-materials animation="property: scale;
@@ -722,7 +702,6 @@ init: function () {
                     rotation="0 90 0"
                     selectingredient
                     scale="1 1 1"
-                    sound="src: #errorVolgordeMessage;"
                     ></a-entity>
       <a-box
         id="topShelf"
