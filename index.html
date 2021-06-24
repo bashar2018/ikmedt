@@ -184,7 +184,7 @@ init: function () {
             }
             break;
         case "kaasObj":
-            document.getElementById('kaasObj').setAttribute('position', '9 2.3 -10');
+            document.getElementById('kaasObj').setAttribute('position', '9 2.3 -9.8');
             document.getElementById('kaasObj').setAttribute('rotation', '-5 180 0');
             document.getElementById('checkBoxKaas').setAttribute('color', 'green');
             if (document.getElementById('checkBoxSalami').getAttribute('color') == 'green' && document.getElementById('checkBoxSaus').getAttribute('color') == 'green' && document.getElementById('checkBoxDeeg').getAttribute('color') == 'green'){
@@ -197,7 +197,8 @@ init: function () {
             }
         break;
         case "sauceObj":
-            document.getElementById('sauceObj').setAttribute('position', '8 2.5 -10.5');
+            document.getElementById('sauceObj').setAttribute('position', '8 2.2 -10.7');
+            document.getElementById('sauceObj').setAttribute('rotation', '0 90 0');
             document.getElementById('checkBoxSaus').setAttribute('color', 'green');
             if (document.getElementById('checkBoxSalami').getAttribute('color') == 'green' && document.getElementById('checkBoxKaas').getAttribute('color') == 'green' && document.getElementById('checkBoxDeeg').getAttribute('color') == 'green'){
               document.getElementById('stapBijhouder').setAttribute('value', 'Stap 2/3')
@@ -210,7 +211,7 @@ init: function () {
             }
         break;
         case "doughObj":
-            document.getElementById('doughObj').setAttribute('position', '9 2.2 -8.5');
+            document.getElementById('doughObj').setAttribute('position', '9 2.2 -8.3');
             document.getElementById('checkBoxDeeg').setAttribute('color', 'green');
             if (document.getElementById('checkBoxSalami').getAttribute('color') == 'green' && document.getElementById('checkBoxKaas').getAttribute('color') == 'green' && document.getElementById('checkBoxSaus').getAttribute('color') == 'green'){
               document.getElementById('stapBijhouder').setAttribute('value', 'Stap 2/3')
@@ -271,6 +272,7 @@ init: function () {
         case "sauceObj":
           if(document.getElementById('checkBoxDeeg').getAttribute('color') == 'green'){
             document.getElementById('sauceObj').setAttribute('visible', 'false');
+            document.getElementById('sauceObj').setAttribute('position', '30 30 30');
             document.getElementById('sausOpPizza').setAttribute('visible', 'true');
             document.getElementById('checkBoxSaus').setAttribute('color', 'green');
             if (document.getElementById('checkBoxSalami').getAttribute('color') == 'green' && document.getElementById('checkBoxKaas').getAttribute('color') == 'green' && document.getElementById('checkBoxDeeg').getAttribute('color') == 'green'){
@@ -310,21 +312,6 @@ init: function () {
       }
 
       case "Stap 3/3":
-      // switch (thisElId){
-      //   case "oven":
-      //       if (document.getElementById('checkBoxPizza').getAttribute('color') == 'green'){
-      //         document.getElementById('toDoListSalamiText').setAttribute('value', 'Het is gelukt!')
-      //         document.getElementById('pizzaDeeg').setAttribute('color', 'lightbrown');
-      //         document.getElementById('checkBoxOven').setAttribute('color', 'green');
-      //         document.getElementById('Pizza').setAttribute('position', '8 2.4 -7')
-      //       }
-      //       break;
-      //   // case "invisibleBox":
-      //   //   console.log('Pizza')
-      //   //   document.getElementById('checkBoxPizza').setAttribute('color', 'green');
-      //   //   document.getElementById('Pizza').setAttribute('position', '0.55 0.3 2.7')
-      //   //   break;
-      // }
       break;
     }
   });
@@ -414,7 +401,7 @@ init: function () {
         <a-asset-item id="ovenModel" src="assets/oven.gltf"></a-asset-item>
         <a-asset-item id="salamiModel" src="assets/salami.gltf"></a-asset-item>
         <a-asset-item id="pizzaKaas" src="assets/pizzakaas.gltf"></a-asset-item>
-        <a-asset-item id="sausModel" src="assets/sausModel.gltf"></a-asset-item>
+        <a-asset-item id="sausModel" src="assets/saus.gltf"></a-asset-item>
       </a-assets>
       <a-camera id="camera" position="1.8 4 4">
         <a-cursor id="cursor" color="white"></a-cursor>
@@ -674,7 +661,6 @@ init: function () {
                   rotation="0 90 0"
 
                   ></a-entity>
-     
 
         <a-entity id="kaasObj" gltf-model="#kaasModel" position="0.5 7.15 -19.5" modify-materials animation="property: scale;
                     to: 1 1.5 1;
@@ -689,9 +675,9 @@ init: function () {
                     rotation="-15 180 0"
                     scale="1 1 1"
                     ></a-entity>
-                                       
-        <a-entity id="sauceObj" gltf-model="#sausModel" position="2 7.3 -19.5" modify-materials animation="property: scale;
-                    to: 0.5 1.1 0.5;
+
+        <a-entity id="sauceObj" gltf-model="#sausModel" position="2 7 -19.5" modify-materials animation="property: scale;
+                    to: 1 1.2 1;
                     easing: linear;
                     dur: 2000;
                     loop: false;
@@ -700,10 +686,10 @@ init: function () {
                     resumeEvents: animation-resume;
                     restartEvents: animation-restart"
                     selectingredient
-                    rotation="-15 180 0"
+                    rotation="0 180 0"
                     scale="1 1 1"
                     ></a-entity>
-                  
+
         <a-entity id="salamiObj" gltf-model="#salamiModel" position="1 3 -19.5" modify-materials animation="property: scale;
                     to: 1 1.5 1;
                     easing: linear;
