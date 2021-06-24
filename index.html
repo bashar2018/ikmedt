@@ -411,6 +411,7 @@ init: function () {
         <a-asset-item id="ovenModel" src="assets/oven.gltf"></a-asset-item>
         <a-asset-item id="salamiModel" src="assets/salami.gltf"></a-asset-item>
         <a-asset-item id="pizzaKaas" src="assets/pizzakaas.gltf"></a-asset-item>
+        <a-asset-item id="sausModel" src="assets/sausModel.gltf"></a-asset-item>
       </a-assets>
       <a-camera id="camera" position="1.8 4 4">
         <a-cursor id="cursor" color="white"></a-cursor>
@@ -674,7 +675,7 @@ init: function () {
           >
 
         </a-box>
-       <a-box
+       <!-- <a-box
           id="sauceObj"
           selectingredient
           animation="property: scale;
@@ -690,7 +691,20 @@ init: function () {
           scale="0.5 0.5 0.5"
           color="green"
           >
-        </a-box>
+        </a-box> -->
+        <a-entity id="sauceObj" gltf-model="#sausModel" position="2 7.3 -19.5" modify-materials animation="property: scale;
+                    to: 0.5 1.1 0.5;
+                    easing: linear;
+                    dur: 2000;
+                    loop: false;
+                    startEvents: animation-start;
+                    pauseEvents: animation-pause;
+                    resumeEvents: animation-resume;
+                    restartEvents: animation-restart"
+                    rotation="0 90 0"
+                    selectingredient
+                    scale="0.5 0.5 0.5"
+                    ></a-entity>
       <a-box
           id="kaasObj"
           selectingredient
