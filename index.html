@@ -404,6 +404,7 @@ init: function () {
         <img id="hamPizza" src="https://cdn.glitch.com/cdddc178-3bc7-4793-beb0-f147ddbf5afd%2FhamPizza.jpeg?1624268298540">
         <img id="salamiPizza" src="https://cdn.glitch.com/cdddc178-3bc7-4793-beb0-f147ddbf5afd%2Fthumbnails%2FsalamiPizza.jpeg?1624268276899">
         <audio id="pizzaSound" src="assets/pizza.mp3" preload="auto"></audio>
+        <audio id="foutSound" src="assets/foutIngredient.mp3" preload="auto"></audio>
         <audio id="sausSound" src="assets/saus.mp3" preload="auto"></audio>
         <audio id="deegSound" src="assets/deeg.mp3" preload="auto"></audio>
         <audio id="salamiSound" src="assets/salami.mp3" preload="auto"></audio>
@@ -413,8 +414,10 @@ init: function () {
         <audio id="victorySound" src="assets/victorySound.mp3" preload="auto"></audio>
         <a-asset-item id="kitchenModel" src="assets/kitchen.gltf"></a-asset-item>
         <a-asset-item id="kaasModel" src="assets/kaas.gltf"></a-asset-item>
+        <a-asset-item id="pineAppleModel" src="assets/pineapple.gltf"></a-asset-item>
         <a-asset-item id="deegModel" src="assets/deeg.gltf"></a-asset-item>
         <a-asset-item id="ovenModel" src="assets/oven.gltf"></a-asset-item>
+        <a-asset-item id="mushroomModel" src="assets/mushroom.gltf"></a-asset-item>
         <a-asset-item id="salamiModel" src="assets/salami.gltf"></a-asset-item>
         <a-asset-item id="pizzaKaas" src="assets/pizzakaas.gltf"></a-asset-item>
         <a-asset-item id="sausModel" src="assets/saus.gltf"></a-asset-item>
@@ -678,7 +681,7 @@ init: function () {
 
                   ></a-entity>
 
-        <a-entity id="kaasObj" gltf-model="#kaasModel" position="0.5 7.15 -19.5" modify-materials animation="property: scale;
+        <a-entity id="kaasObj" gltf-model="#kaasModel" position="-1 7.15 -19.5" modify-materials animation="property: scale;
                     to: 1 1.5 1;
                     easing: linear;
                     dur: 2000;
@@ -688,7 +691,7 @@ init: function () {
                     resumeEvents: animation-resume;
                     restartEvents: animation-restart"
                     selectingredient
-                    rotation="-15 180 0"
+                    rotation="-5 270 0"
                     scale="1 1 1"
                     sound="src: #errorVolgordeMessage;"
                     ></a-entity>
@@ -730,6 +733,16 @@ init: function () {
         color ="brown"
       >
       </a-box>
+      <a-entity id="pineAppleModel" gltf-model="#pineAppleModel" position="-0.5 3 -19.5" modify-materials
+                  change
+                  scale="1 1 1"
+                  sound="src: #foutSound; on: mouseenter; volume: 2;"
+                  ></a-entity>
+      <a-entity id="mushroomModel" gltf-model="#mushroomModel" position="-3.5 5 -19.5" modify-materials
+                  change
+                  scale="1 1 1"
+                  sound="src: #foutSound; on: mouseenter; volume: 2;"
+                  ></a-entity>
       <a-box
         id="bottomShelf"
         position="0 3 -19.5"
