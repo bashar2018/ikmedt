@@ -210,7 +210,7 @@ init: function () {
             }
         break;
         case "doughObj":
-            document.getElementById('doughObj').setAttribute('position', '9 2.5 -9');
+            document.getElementById('doughObj').setAttribute('position', '9 2.2 -8.5');
             document.getElementById('checkBoxDeeg').setAttribute('color', 'green');
             if (document.getElementById('checkBoxSalami').getAttribute('color') == 'green' && document.getElementById('checkBoxKaas').getAttribute('color') == 'green' && document.getElementById('checkBoxSaus').getAttribute('color') == 'green'){
               document.getElementById('stapBijhouder').setAttribute('value', 'Stap 2/3')
@@ -410,6 +410,7 @@ init: function () {
         <audio id="victorySound" src="assets/victorySound.mp3" preload="auto"></audio>
         <a-asset-item id="kitchenModel" src="assets/kitchen.gltf"></a-asset-item>
         <a-asset-item id="kaasModel" src="assets/kaas.gltf"></a-asset-item>
+        <a-asset-item id="deegModel" src="assets/deeg.gltf"></a-asset-item>
         <a-asset-item id="ovenModel" src="assets/oven.gltf"></a-asset-item>
         <a-asset-item id="salamiModel" src="assets/salami.gltf"></a-asset-item>
         <a-asset-item id="pizzaKaas" src="assets/pizzakaas.gltf"></a-asset-item>
@@ -658,7 +659,21 @@ init: function () {
 
       </a-box>
 
-       <a-box
+      <a-entity id="doughObj" gltf-model="#deegModel" position="0 5 -19.5" modify-materials animation="property: scale;
+                  to: 1 1.5 1;
+                  easing: linear;
+                  dur: 2000;
+                  loop: false;
+                  startEvents: animation-start;
+                  pauseEvents: animation-pause;
+                  resumeEvents: animation-resume;
+                  restartEvents: animation-restart"
+                  selectingredient
+                  scale="1 1 1"
+                  rotation="0 90 0"
+
+                  ></a-entity>
+       <!-- <a-box
           id="doughObj"
           selectingredient
           animation="property: scale;
@@ -675,7 +690,7 @@ init: function () {
           color="grey"
           >
 
-        </a-box>
+        </a-box> -->
        <a-box
           id="sauceObj"
           selectingredient
