@@ -43,7 +43,7 @@
             case "hamChoiceMeter":
             case "salamiChoiceMeter":
             document.getElementById('pizzaChoice').setAttribute('visible', 'false');
-            document.getElementById('camera').setAttribute('position', '0 4 -8')
+            document.getElementById('cameraPosition').setAttribute('position', '0 4 -8')
             document.getElementById('cursor').setAttribute('color', 'black')
             document.getElementById('kitchen').setAttribute('visible', 'true')
             document.getElementById('pizzaChoice').setAttribute('position', '-5 -10 -10');
@@ -424,9 +424,11 @@ init: function () {
         <a-asset-item id="marioModel" src="assets/mario.gltf"></a-asset-item>
         <a-asset-item id="luigiModel" src="assets/luigi.gltf"></a-asset-item>
       </a-assets>
-      <a-camera id="camera" position="1.8 4 4">
-        <a-cursor id="cursor" color="white"></a-cursor>
-      </a-camera>
+      <a-entity id="cameraPosition" position="1.8 4 4">
+        <a-camera id="camera">
+          <a-cursor id="cursor" color="white"></a-cursor>
+        </a-camera>
+      </a-entity>
       <a-entity id="tutorialChoice" visible="true">
       <a-box
       id="sauceChoiceMeter"
