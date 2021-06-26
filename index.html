@@ -422,6 +422,8 @@ init: function () {
         <a-asset-item id="salamiModel" src="assets/salami.gltf"></a-asset-item>
         <a-asset-item id="pizzaKaas" src="assets/pizzakaas.gltf"></a-asset-item>
         <a-asset-item id="sausModel" src="assets/saus.gltf"></a-asset-item>
+        <a-asset-item id="marioModel" src="assets/mario.gltf"></a-asset-item>
+        <a-asset-item id="luigiModel" src="assets/luigi.gltf"></a-asset-item>
       </a-assets>
       <a-camera id="camera" position="1.8 4 4">
         <a-cursor id="cursor" color="white"></a-cursor>
@@ -491,12 +493,11 @@ init: function () {
       ></a-box>
       <a-text
       id="tutorialChoiceText"
-      position="-1.6 6.3 -3.95"
+      position="-2.35 6.3 -3.95"
       rotation="0 0 0"
       color="white"
       value="Selecteer een tutorial"
-      height="1"
-      wrap-count="14"
+      wrap-count="17"
       ></a-text>
       <a-box
         id="sauceBox"
@@ -531,6 +532,15 @@ init: function () {
         sound="src: #pizzaSound; on: mouseenter; volume: 3;"
         shadow
       ></a-box>
+      <a-entity id="marioObj" gltf-model="#marioModel" position="-7.5 0 -3
+      " modify-materials
+                  scale="1 1 1"
+                  rotation="0 -225 0"
+                  ></a-entity>
+      <a-entity id="luigiObj" gltf-model="#luigiModel" position="7.5 0 -3" modify-materials
+                  scale="1 1 1"
+                  rotation="0 225 0"
+                  ></a-entity>
       <a-plane
         position="0 0 0"
         rotation="-90 0 0"
@@ -604,12 +614,12 @@ init: function () {
     ></a-box>
     <a-text
     id="pizzaChoiceText"
-    position="-1.6 6.3 -3.95"
+    position="-2.2 6.3 -3.95"
     rotation="0 0 0"
     color="white"
     value="Selecteer een pizza"
     height="1"
-    wrap-count="14"
+    wrap-count="17"
     ></a-text>
     <a-box
       id="salamiBox"
@@ -644,6 +654,15 @@ init: function () {
       sound="src: #hawaiiSound; on: mouseenter;"
       shadow
     ></a-box>
+    <a-entity id="marioObj" gltf-model="#marioModel" position="-7.5 0 -3
+    " modify-materials
+              scale="1 1 1"
+              rotation="0 -225 0"
+              ></a-entity>
+    <a-entity id="luigiObj" gltf-model="#luigiModel" position="7.5 0 -3" modify-materials
+              scale="1 1 1"
+              rotation="0 225 0"
+              ></a-entity>
     <a-plane
       position="0 0 0"
       rotation="-90 0 0"
